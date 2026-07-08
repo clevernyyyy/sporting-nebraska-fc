@@ -29,7 +29,7 @@ export default function Games() {
   return (
     <div>
       {/* Page header */}
-      <div className="bg-gea-black border-b border-gea-gold py-10">
+      <div className="bg-snfc-navy border-b border-snfc-gold py-10">
         <div className="max-w-7xl mx-auto px-4 flex items-end justify-between gap-4">
           <h1
             className="text-5xl font-display font-bold text-white uppercase tracking-widest"
@@ -63,7 +63,7 @@ export default function Games() {
             </div>
             <div className="h-2 bg-gray-100 overflow-hidden flex">
               <div
-                className="h-full bg-gea-gold"
+                className="h-full bg-snfc-gold"
                 style={{ width: `${(record.goalsFor / (record.goalsFor + record.goalsAgainst)) * 100}%` }}
               />
               <div className="h-full bg-red-400 flex-1" />
@@ -79,8 +79,8 @@ export default function Games() {
               onClick={() => setFilter(f)}
               className={`px-5 py-2 text-xs font-display uppercase tracking-widest transition-colors ${i > 0 ? 'border-l border-gray-200' : ''} ${
                 filter === f
-                  ? 'bg-gea-black text-gea-gold'
-                  : 'bg-white text-gray-500 hover:text-gea-black'
+                  ? 'bg-snfc-navy text-snfc-gold'
+                  : 'bg-white text-gray-500 hover:text-snfc-navy'
               }`}
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >

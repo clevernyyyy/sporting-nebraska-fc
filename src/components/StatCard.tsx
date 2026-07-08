@@ -7,9 +7,9 @@ interface StatCardProps {
 
 export default function StatCard({ label, value, sub, invert }: StatCardProps) {
   return (
-    <div className={`p-4 border-l-2 border-gea-gold ${invert ? 'bg-gea-black text-white' : 'bg-white'}`}>
+    <div className={`p-4 border-l-2 border-snfc-gold ${invert ? 'bg-snfc-navy text-white' : 'bg-white'}`}>
       <div
-        className={`text-4xl font-display font-bold leading-none mb-1 ${invert ? 'text-gea-gold' : 'text-gea-black'}`}
+        className={`text-4xl font-display font-bold leading-none mb-1 ${invert ? 'text-snfc-gold' : 'text-snfc-navy'}`}
         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
       >
         {value}

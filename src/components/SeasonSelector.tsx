@@ -13,11 +13,11 @@ export default function SeasonSelector({ seasons, currentId, onChange }: Props) 
     <select
       value={currentId}
       onChange={e => onChange(e.target.value)}
-      className="appearance-none bg-gea-black text-gea-gold border border-gea-gold px-3 py-1.5 text-sm font-display uppercase tracking-wider cursor-pointer focus:outline-none"
+      className="appearance-none bg-snfc-navy text-snfc-gold border border-snfc-gold px-3 py-1.5 text-sm font-display uppercase tracking-wider cursor-pointer focus:outline-none"
       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
     >
       {sorted.map(s => (
-        <option key={s.id} value={s.id} className="bg-gea-black text-gea-gold">
+        <option key={s.id} value={s.id} className="bg-snfc-navy text-snfc-gold">
           {s.label}{s.isActive ? ' ★' : ''}
         </option>
       ))}

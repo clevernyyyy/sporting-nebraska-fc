@@ -8,14 +8,14 @@ import PlayerSilhouette from '../components/PlayerSilhouette';
 import type { Game, Season } from '../types';
 
 const PITCH_BG = 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1920&q=80&auto=format&fit=crop';
-const GEA_LOGO = 'https://www.gretnaeliteacademy.com/wp-content/uploads/2019/03/Gretna-Elite-Academy-Color-RGB-white-solid-1.png';
+const SNFC_LOGO = '/sporting-nebraska-logo.png';
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-1 h-6 bg-gea-gold" />
+      <div className="w-1 h-6 bg-snfc-gold" />
       <h2
-        className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+        className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
       >
         {children}
@@ -52,7 +52,7 @@ export default function Home() {
     <div>
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <div
-        className="relative min-h-[85vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[45vh] flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${PITCH_BG})`,
           backgroundSize: 'cover',
@@ -61,31 +61,31 @@ export default function Home() {
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gea-black/75" />
+        <div className="absolute inset-0 bg-snfc-navy/75" />
         {/* Gold vignette bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gea-black/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-snfc-navy/80 to-transparent" />
 
         <div className="relative z-10 text-center px-4">
           <img
-            src={GEA_LOGO}
-            alt="Gretna Elite Academy"
-            className="h-28 md:h-36 w-auto object-contain mx-auto mb-8 drop-shadow-2xl"
+            src={SNFC_LOGO}
+            alt="Sporting Nebraska FC"
+            className="h-20 md:h-24 w-auto object-contain mx-auto mb-4 drop-shadow-2xl"
           />
           <div
             className="text-white/50 text-sm font-display uppercase tracking-[0.3em] mb-3"
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
           >
-            U11 · 9v9 · Pre-ECNL Regional League
+            U11 · 9v9
           </div>
           <h1
-            className="text-6xl md:text-8xl font-display font-bold text-white leading-none tracking-wide mb-2"
+            className="text-5xl md:text-6xl font-display font-bold text-white leading-none tracking-wide mb-2"
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
           >
             {currentSeason?.label ?? seasonId}
           </h1>
 
           {/* Record */}
-          <div className="flex items-center justify-center gap-0 mt-8">
+          <div className="flex items-center justify-center gap-0 mt-5">
             {[
               { val: record.wins,   label: 'W', color: 'text-emerald-400' },
               { val: record.draws,  label: 'D', color: 'text-white/60' },
@@ -111,14 +111,14 @@ export default function Home() {
           <div className="mt-8 flex items-center justify-center gap-3">
             <Link
               to="/games"
-              className="bg-gea-gold text-gea-black px-6 py-2.5 text-sm font-display font-semibold uppercase tracking-widest hover:bg-gea-gold-light transition-colors"
+              className="bg-snfc-gold text-snfc-navy px-6 py-2.5 text-sm font-display font-semibold uppercase tracking-widest hover:bg-snfc-gold-light transition-colors"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               View All Games
             </Link>
             <Link
               to="/players"
-              className="border border-white/30 text-white px-6 py-2.5 text-sm font-display font-semibold uppercase tracking-widest hover:border-gea-gold hover:text-gea-gold transition-colors"
+              className="border border-white/30 text-white px-6 py-2.5 text-sm font-display font-semibold uppercase tracking-widest hover:border-snfc-gold hover:text-snfc-gold transition-colors"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               View Roster
@@ -155,24 +155,24 @@ export default function Home() {
                 className="bg-white p-5 hover:bg-gray-50 transition-colors group flex flex-col gap-3"
               >
                 <div
-                  className="text-xs font-display uppercase tracking-widest text-gea-gold"
+                  className="text-xs font-display uppercase tracking-widest text-snfc-gold"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
                   Top Scorer
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 border-2 border-gea-gold shrink-0 overflow-hidden">
+                  <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
                     {topScorer.player.photoUrl
                       ? <img src={topScorer.player.photoUrl} className="w-full h-full object-cover object-top" alt="" />
                       : <PlayerSilhouette />
                     }
                   </div>
                   <div>
-                    <div className="font-semibold text-gea-black group-hover:text-gea-gold transition-colors">
+                    <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
                       {topScorer.player.name}
                     </div>
                     <div
-                      className="text-3xl font-display font-bold text-gea-black leading-tight mt-0.5"
+                      className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                     >
                       {topScorer.goals} <span className="text-sm font-normal text-gray-400">goals</span>
@@ -188,24 +188,24 @@ export default function Home() {
                 className="bg-white p-5 hover:bg-gray-50 transition-colors group flex flex-col gap-3"
               >
                 <div
-                  className="text-xs font-display uppercase tracking-widest text-gea-gold"
+                  className="text-xs font-display uppercase tracking-widest text-snfc-gold"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
                   Top Assister
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 border-2 border-gea-gold shrink-0 overflow-hidden">
+                  <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
                     {topAssist.player.photoUrl
                       ? <img src={topAssist.player.photoUrl} className="w-full h-full object-cover object-top" alt="" />
                       : <PlayerSilhouette />
                     }
                   </div>
                   <div>
-                    <div className="font-semibold text-gea-black group-hover:text-gea-gold transition-colors">
+                    <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
                       {topAssist.player.name}
                     </div>
                     <div
-                      className="text-3xl font-display font-bold text-gea-black leading-tight mt-0.5"
+                      className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                     >
                       {topAssist.assists} <span className="text-sm font-normal text-gray-400">assists</span>
@@ -215,9 +215,9 @@ export default function Home() {
               </Link>
             )}
 
-            <div className="bg-gea-black p-5 flex items-center gap-4">
+            <div className="bg-snfc-navy p-5 flex items-center gap-4">
               <div
-                className="text-6xl font-display font-bold text-gea-gold leading-none"
+                className="text-6xl font-display font-bold text-snfc-gold leading-none"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 {cleanSheets}
@@ -243,7 +243,7 @@ export default function Home() {
             <SectionLabel>Recent Results</SectionLabel>
             <Link
               to="/games"
-              className="text-xs font-display uppercase tracking-widest text-gea-gold hover:text-gea-gold-light transition-colors"
+              className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               All Games →

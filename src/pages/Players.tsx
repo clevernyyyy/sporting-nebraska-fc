@@ -34,7 +34,7 @@ export default function Players() {
   return (
     <div>
       {/* Page header */}
-      <div className="bg-gea-black border-b border-gea-gold py-10">
+      <div className="bg-snfc-navy border-b border-snfc-gold py-10">
         <div className="max-w-7xl mx-auto px-4 flex items-end justify-between gap-4">
           <div>
             <h1
@@ -44,7 +44,7 @@ export default function Players() {
               Roster
             </h1>
             <div
-              className="text-gea-gold text-sm font-display uppercase tracking-widest mt-1"
+              className="text-snfc-gold text-sm font-display uppercase tracking-widest mt-1"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               {seasonPlayers.length} Players
@@ -63,8 +63,8 @@ export default function Players() {
               onClick={() => setGroupFilter(value)}
               className={`flex-1 px-2 py-2 text-xs font-display uppercase tracking-widest transition-colors ${i > 0 ? 'border-l border-gray-200' : ''} ${
                 groupFilter === value
-                  ? 'bg-gea-black text-gea-gold'
-                  : 'bg-white text-gray-500 hover:text-gea-black'
+                  ? 'bg-snfc-navy text-snfc-gold'
+                  : 'bg-white text-gray-500 hover:text-snfc-navy'
               }`}
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
@@ -75,7 +75,7 @@ export default function Players() {
         </div>
 
         {/* Player grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-px bg-gray-200">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-gray-200">
           {seasonPlayers.map((player: Player) => (
             <PlayerCard
               key={player.id}
@@ -97,17 +97,30 @@ export default function Players() {
         {seasonCoaches.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-1 h-6 bg-gea-gold" />
+              <div className="w-1 h-6 bg-snfc-gold" />
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Coaching Staff
               </h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-px bg-gray-200">
+            <div className="space-y-px">
               {seasonCoaches.map(coach => (
-                <CoachCard key={coach.id} coach={coach} />
+                <div key={coach.id} className="bg-white border border-gray-200 flex gap-0 overflow-hidden">
+                  <CoachCard coach={coach} />
+                  {coach.bio && (
+                    <div className="flex-1 p-5 flex flex-col justify-center border-l border-gray-100">
+                      <div
+                        className="text-xs font-display uppercase tracking-widest text-snfc-gold mb-2"
+                        style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                      >
+                        About
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed">{coach.bio}</p>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -116,9 +129,9 @@ export default function Players() {
         {/* Stats table */}
         {seasonPlayers.length > 0 && (
           <div className="bg-white border border-gray-200 overflow-hidden">
-            <div className="border-b-2 border-gea-gold px-5 py-3">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Season Stats
@@ -127,7 +140,7 @@ export default function Players() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-gea-black text-white/60 text-xs font-display uppercase tracking-widest"
+                  <tr className="bg-snfc-navy text-white/60 text-xs font-display uppercase tracking-widest"
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                     <th className="text-left px-4 py-3 font-medium">#</th>
                     <th className="text-left px-4 py-3 font-medium">Player</th>
@@ -160,9 +173,9 @@ export default function Players() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
                               {player.photoUrl && (
-                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-top border border-gea-gold" alt="" />
+                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-top border border-snfc-gold" alt="" />
                               )}
-                              <Link to={`/players/${player.id}`} className="font-medium text-gea-black hover:text-gea-gold transition-colors">
+                              <Link to={`/players/${player.id}`} className="font-medium text-snfc-navy hover:text-snfc-gold transition-colors">
                                 {player.name}
                               </Link>
                             </div>
@@ -175,18 +188,18 @@ export default function Players() {
                               {POSITION_FULL[player.position]}
                             </span>
                           </td>
-                          <td className="px-4 py-3 text-center font-bold text-gea-black">{s.goals}</td>
-                          <td className="px-4 py-3 text-center font-bold text-gea-black">{s.assists}</td>
+                          <td className="px-4 py-3 text-center font-bold text-snfc-navy">{s.goals}</td>
+                          <td className="px-4 py-3 text-center font-bold text-snfc-navy">{s.assists}</td>
                           <td className="px-4 py-3 text-center">
                             <span
-                              className={`font-display font-bold ${s.goals + s.assists > 0 ? 'text-gea-gold' : 'text-gray-300'}`}
+                              className={`font-display font-bold ${s.goals + s.assists > 0 ? 'text-snfc-gold' : 'text-gray-300'}`}
                               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                             >
                               {s.goals + s.assists}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-center text-gray-400 hidden md:table-cell">
-                            {s.saves > 0 ? <span className="font-bold text-gea-black">{s.saves}</span> : '—'}
+                            {s.saves > 0 ? <span className="font-bold text-snfc-navy">{s.saves}</span> : '—'}
                           </td>
                           <td className="px-4 py-3 text-center hidden md:table-cell">
                             {s.yellowCards > 0 ? <span className="font-bold text-amber-500">{s.yellowCards}</span> : <span className="text-gray-200">—</span>}

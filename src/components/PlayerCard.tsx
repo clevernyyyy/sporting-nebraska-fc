@@ -24,10 +24,10 @@ export default function PlayerCard({ player, goals = 0, assists = 0, saves }: Pl
   return (
     <Link
       to={`/players/${player.id}`}
-      className="block bg-white border border-gray-200 hover:border-gea-gold transition-colors group overflow-hidden"
+      className="block bg-white border border-gray-200 hover:border-snfc-gold transition-colors group overflow-hidden"
     >
       {/* Photo */}
-      <div className="aspect-[3/4] bg-gea-black overflow-hidden relative">
+      <div className="aspect-[3/4] bg-snfc-navy overflow-hidden relative">
         {player.photoUrl ? (
           <img
             src={player.photoUrl}
@@ -39,7 +39,7 @@ export default function PlayerCard({ player, goals = 0, assists = 0, saves }: Pl
         )}
         {/* Jersey number */}
         <div
-          className="absolute top-0 left-0 bg-gea-gold text-gea-black w-8 h-8 flex items-center justify-center font-display font-bold text-sm leading-none"
+          className="absolute top-0 left-0 bg-snfc-gold text-snfc-navy w-8 h-8 flex items-center justify-center font-display font-bold text-sm leading-none"
           style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
         >
           {player.number}
@@ -69,12 +69,12 @@ export default function PlayerCard({ player, goals = 0, assists = 0, saves }: Pl
       </div>
 
       {/* Info */}
-      <div className="p-3 border-t-2 border-gea-gold">
-        <div className="font-semibold text-gea-black group-hover:text-gea-gold transition-colors text-sm leading-tight truncate">
+      <div className="p-3 border-t-2 border-snfc-gold">
+        <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors text-sm leading-tight truncate">
           {player.name}
         </div>
         {player.nickname && (
-          <div className="text-[11px] text-gea-gold font-display uppercase tracking-widest leading-tight truncate"
+          <div className="text-[11px] text-snfc-gold font-display uppercase tracking-widest leading-tight truncate"
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
             "{player.nickname}"
           </div>
@@ -82,12 +82,12 @@ export default function PlayerCard({ player, goals = 0, assists = 0, saves }: Pl
         <div className="flex gap-3 mt-1.5 text-xs text-gray-500">
           {player.position === 'GK' ? (
             <>
-              <span><span className="font-bold text-gea-black">{saves ?? 0}</span> saves</span>
+              <span><span className="font-bold text-snfc-navy">{saves ?? 0}</span> saves</span>
             </>
           ) : (
             <>
-              <span><span className="font-bold text-gea-black">{goals}</span> G</span>
-              <span><span className="font-bold text-gea-black">{assists}</span> A</span>
+              <span><span className="font-bold text-snfc-navy">{goals}</span> G</span>
+              <span><span className="font-bold text-snfc-navy">{assists}</span> A</span>
             </>
           )}
         </div>

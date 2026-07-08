@@ -6,7 +6,7 @@ interface Props {
 
 export default function PlayerSilhouette({ className = '' }: Props) {
   return (
-    <div className={`w-full h-full bg-gea-black ${className}`}>
+    <div className={`w-full h-full bg-snfc-navy ${className}`}>
       <img
         src={silhouette}
         alt=""

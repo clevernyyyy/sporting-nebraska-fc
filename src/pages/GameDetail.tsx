@@ -22,7 +22,7 @@ export default function GameDetail() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center text-gray-400">
         Game not found.{' '}
-        <Link to="/games" className="text-gea-gold underline">Back to games</Link>
+        <Link to="/games" className="text-snfc-gold underline">Back to games</Link>
       </div>
     );
   }
@@ -60,11 +60,11 @@ export default function GameDetail() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-gea-black/82" />
+        <div className="absolute inset-0 bg-snfc-navy/82" />
         <div className="relative max-w-3xl mx-auto">
           <Link
             to="/games"
-            className="inline-flex items-center gap-1.5 text-white/50 hover:text-gea-gold transition-colors text-sm font-display uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-1.5 text-white/50 hover:text-snfc-gold transition-colors text-sm font-display uppercase tracking-wider mb-6"
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
           >
             <ArrowLeft size={14} /> Back to Games
@@ -73,7 +73,7 @@ export default function GameDetail() {
           <div className="flex items-start justify-between gap-4 mb-8">
             <div>
               <div
-                className="text-gea-gold text-xs font-display uppercase tracking-widest mb-2"
+                className="text-snfc-gold text-xs font-display uppercase tracking-widest mb-2"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 {season?.label} · {game.isHome ? 'Home' : 'Away'}
@@ -108,7 +108,7 @@ export default function GameDetail() {
                 Gretna EA
               </div>
               <div
-                className="text-8xl font-display font-bold text-gea-gold leading-none"
+                className="text-8xl font-display font-bold text-snfc-gold leading-none"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 {game.goalsFor}
@@ -141,17 +141,17 @@ export default function GameDetail() {
                 {game.tournament.logoUrl && (
                   <img src={game.tournament.logoUrl} alt={game.tournament.name} className="h-8 w-auto object-contain shrink-0" />
                 )}
-                {isChamp && !game.tournament.logoUrl && <Trophy size={15} className="text-gea-black shrink-0" />}
+                {isChamp && !game.tournament.logoUrl && <Trophy size={15} className="text-snfc-navy shrink-0" />}
                 <div className="flex flex-col leading-tight">
                   <span
-                    className={`font-display font-bold uppercase tracking-widest text-sm ${isChamp ? 'text-gea-black' : 'text-white/80'}`}
+                    className={`font-display font-bold uppercase tracking-widest text-sm ${isChamp ? 'text-snfc-navy' : 'text-white/80'}`}
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                   >
                     {game.tournament.name}
                   </span>
                   {(game.tournament.round || isChamp) && (
                     <span
-                      className={`text-xs uppercase tracking-wider ${isChamp ? 'text-gea-black/60' : 'text-white/40'}`}
+                      className={`text-xs uppercase tracking-wider ${isChamp ? 'text-snfc-navy/60' : 'text-white/40'}`}
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                     >
                       {isChamp ? 'Champions' : game.tournament.round}
@@ -160,7 +160,7 @@ export default function GameDetail() {
                 </div>
               </>
             );
-            const baseClass = `inline-flex items-center gap-3 px-4 py-2.5 ${isChamp ? 'bg-gea-gold' : 'bg-white/10'}`;
+            const baseClass = `inline-flex items-center gap-3 px-4 py-2.5 ${isChamp ? 'bg-snfc-gold' : 'bg-white/10'}`;
             return game.tournament.website ? (
               <a href={game.tournament.website} target="_blank" rel="noopener noreferrer" className={`${baseClass} hover:brightness-125 transition-[filter]`}>
                 {inner}
@@ -185,7 +185,7 @@ export default function GameDetail() {
                         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                         {playerName(keeperId)}
                       </span>
-                      <span className="text-gea-gold font-display font-bold text-xl leading-none"
+                      <span className="text-snfc-gold font-display font-bold text-xl leading-none"
                         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                         {saves}
                       </span>
@@ -193,7 +193,7 @@ export default function GameDetail() {
                   ))}
                 </span>
               ) : (
-                <span className="text-gea-gold font-display font-bold text-xl leading-none"
+                <span className="text-snfc-gold font-display font-bold text-xl leading-none"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                   {game.keeperSaves}
                 </span>
@@ -278,9 +278,9 @@ export default function GameDetail() {
         {/* Goal Timeline */}
         {timeline.length > 0 && (
           <div className="bg-white border border-gray-200">
-            <div className="border-b-2 border-gea-gold px-5 py-3">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Match Timeline
@@ -337,21 +337,21 @@ export default function GameDetail() {
                           ) : (
                             <div className="flex items-center gap-2 flex-wrap">
                               {scorerPlayer?.photoUrl && (
-                                <img src={scorerPlayer.photoUrl} className="w-6 h-6 object-cover object-top border border-gea-gold shrink-0" alt="" />
+                                <img src={scorerPlayer.photoUrl} className="w-6 h-6 object-cover object-top border border-snfc-gold shrink-0" alt="" />
                               )}
                               {isGuest ? (
-                                <span className="font-semibold text-gea-black text-sm">
+                                <span className="font-semibold text-snfc-navy text-sm">
                                   {scorer}
                                   <span className="text-[10px] text-white/60 font-normal bg-gray-400 px-1 py-0.5 ml-1 uppercase tracking-wider">Guest</span>
                                 </span>
                               ) : (
-                                <Link to={`/players/${goal.scorerId}`} className="font-semibold text-gea-black hover:text-gea-gold transition-colors text-sm">
+                                <Link to={`/players/${goal.scorerId}`} className="font-semibold text-snfc-navy hover:text-snfc-gold transition-colors text-sm">
                                   {scorer}
                                 </Link>
                               )}
                               {goal.isPenalty && (
                                 <span
-                                  className="text-[10px] font-display font-bold text-gea-gold border border-gea-gold px-1 py-0.5 uppercase tracking-wider leading-none"
+                                  className="text-[10px] font-display font-bold text-snfc-gold border border-snfc-gold px-1 py-0.5 uppercase tracking-wider leading-none"
                                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                                 >
                                   PK
@@ -361,15 +361,15 @@ export default function GameDetail() {
                                 <span className="text-xs text-gray-400 flex items-center gap-1">
                                   · assist: {assisterIsGuest
                                     ? <span className="text-gray-500">{assister}</span>
-                                    : <Link to={`/players/${goal.assisterId!}`} className="hover:text-gea-gold transition-colors">{assister}</Link>
+                                    : <Link to={`/players/${goal.assisterId!}`} className="hover:text-snfc-gold transition-colors">{assister}</Link>
                                   }
                                   {goal.assistType === 'corner_kick' && (
-                                    <span className="text-gea-gold font-semibold"> (CK)</span>
+                                    <span className="text-snfc-gold font-semibold"> (CK)</span>
                                   )}
                                   {goal.isPenalty && (
                                     <button
                                       onClick={() => setPkAssistModal(true)}
-                                      className="text-gray-300 hover:text-gea-gold transition-colors ml-0.5"
+                                      className="text-gray-300 hover:text-snfc-gold transition-colors ml-0.5"
                                       title="Why does a PK have an assist?"
                                     >
                                       <HelpCircle size={15} />
@@ -395,7 +395,7 @@ export default function GameDetail() {
                       </div>
                       <span className="shrink-0 text-sm font-display font-bold"
                         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
-                        <span className={isGretna ? 'text-gea-gold' : 'text-gray-400'}>{gretnaScore}</span>
+                        <span className={isGretna ? 'text-snfc-gold' : 'text-gray-400'}>{gretnaScore}</span>
                         <span className="text-gray-300 mx-1">–</span>
                         <span className={!isGretna ? 'text-red-500' : 'text-gray-400'}>{oppScore}</span>
                       </span>
@@ -427,7 +427,7 @@ export default function GameDetail() {
                           {cardPlayer?.photoUrl && (
                             <img src={cardPlayer.photoUrl} className="w-6 h-6 object-cover object-top border border-gray-200 shrink-0" alt="" />
                           )}
-                          <Link to={`/players/${card.playerId}`} className="font-semibold text-gea-black hover:text-gea-gold transition-colors text-sm">
+                          <Link to={`/players/${card.playerId}`} className="font-semibold text-snfc-navy hover:text-snfc-gold transition-colors text-sm">
                             {cardPlayer?.name ?? 'Unknown'}
                           </Link>
                         </>
@@ -451,9 +451,9 @@ export default function GameDetail() {
         {/* Scorer cards */}
         {game.goals.some((g: GoalEvent) => !g.isOwnGoal) && (
           <div className="bg-white border border-gray-200">
-            <div className="border-b-2 border-gea-gold px-5 py-3">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Gretna Scorers
@@ -470,14 +470,14 @@ export default function GameDetail() {
                 return (
                   <div key={i} className="flex items-center gap-3 px-5 py-3">
                     {scorer?.photoUrl && (
-                      <img src={scorer.photoUrl} alt="" className="w-10 h-10 object-cover object-top border-2 border-gea-gold" />
+                      <img src={scorer.photoUrl} alt="" className="w-10 h-10 object-cover object-top border-2 border-snfc-gold" />
                     )}
                     <div className="flex-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
                         {isGuest ? (
-                          <span className="font-semibold text-gea-black text-sm">{scorerDisplayName}</span>
+                          <span className="font-semibold text-snfc-navy text-sm">{scorerDisplayName}</span>
                         ) : (
-                          <Link to={`/players/${scorer?.id}`} className="font-semibold text-gea-black hover:text-gea-gold transition-colors text-sm">
+                          <Link to={`/players/${scorer?.id}`} className="font-semibold text-snfc-navy hover:text-snfc-gold transition-colors text-sm">
                             {scorerDisplayName}
                           </Link>
                         )}
@@ -486,7 +486,7 @@ export default function GameDetail() {
                         )}
                         {goal.isPenalty && (
                           <span
-                            className="text-[10px] font-display font-bold text-gea-gold border border-gea-gold px-1 py-0.5 uppercase tracking-wider leading-none"
+                            className="text-[10px] font-display font-bold text-snfc-gold border border-snfc-gold px-1 py-0.5 uppercase tracking-wider leading-none"
                             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                           >
                             PK
@@ -498,9 +498,9 @@ export default function GameDetail() {
                         {assisterDisplayName && (
                           <> · Assist: {assisterIsGuest
                             ? <span>{assisterDisplayName}</span>
-                            : <Link to={`/players/${assister!.id}`} className="hover:text-gea-gold transition-colors">{assisterDisplayName}</Link>
+                            : <Link to={`/players/${assister!.id}`} className="hover:text-snfc-gold transition-colors">{assisterDisplayName}</Link>
                           }
-                          {goal.assistType === 'corner_kick' && <span className="text-gea-gold font-semibold"> (CK)</span>}
+                          {goal.assistType === 'corner_kick' && <span className="text-snfc-gold font-semibold"> (CK)</span>}
                           </>
                         )}
                       </div>
@@ -521,9 +521,9 @@ export default function GameDetail() {
         {/* Notes */}
         {game.notes && (
           <div className="bg-white border border-gray-200">
-            <div className="border-b-2 border-gea-gold px-5 py-3">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Match Notes
@@ -536,9 +536,9 @@ export default function GameDetail() {
         {/* Highlights */}
         {game.highlights && game.highlights.length > 0 && (
           <div className="bg-white border border-gray-200">
-            <div className="border-b-2 border-gea-gold px-5 py-3">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
               <h2
-                className="font-display font-bold uppercase tracking-widest text-gea-black"
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Highlights
@@ -551,7 +551,7 @@ export default function GameDetail() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gea-gold hover:text-gea-gold-light font-medium transition-colors"
+                  className="flex items-center gap-2 text-sm text-snfc-gold hover:text-snfc-gold-light font-medium transition-colors"
                 >
                   <ExternalLink size={13} />
                   Watch Highlight {game.highlights!.length > 1 ? i + 1 : ''}
@@ -572,7 +572,7 @@ export default function GameDetail() {
             className="bg-white max-w-md w-full shadow-2xl"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between bg-gea-black px-5 py-4">
+            <div className="flex items-center justify-between bg-snfc-navy px-5 py-4">
               <h3
                 className="text-white font-display font-bold uppercase tracking-widest text-sm"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
@@ -596,7 +596,7 @@ export default function GameDetail() {
                   href="https://sportspundit.com/soccer/terms/2682-assist/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gea-gold hover:underline inline-flex items-center gap-1"
+                  className="text-snfc-gold hover:underline inline-flex items-center gap-1"
                 >
                   Learn more <ExternalLink size={10} />
                 </a>

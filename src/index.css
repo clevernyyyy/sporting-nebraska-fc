@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gea-black:      #111111;
-  --color-gea-black-soft: #1c1c1c;
-  --color-gea-gold:       #C4A130;
-  --color-gea-gold-light: #D4B640;
-  --color-gea-gold-dark:  #9C7E24;
-  --color-gea-cream:      #F6F4EE;
-  --color-gea-charcoal:   #2a2a2a;
+  --color-snfc-navy:      #0c2340;
+  --color-snfc-navy-soft: #0f2d50;
+  --color-snfc-gold:       #bb9c60;
+  --color-snfc-gold-light: #caa96e;
+  --color-snfc-gold-dark:  #a08850;
+  --color-snfc-cream:      #eef1f5;
+  --color-snfc-charcoal:   #091c33;
 
   --font-sans:    'Inter', system-ui, sans-serif;
   --font-display: 'Oswald', 'Arial Narrow', sans-serif;
@@ -19,13 +19,13 @@
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: #F6F4EE;
-  color: #111111;
+  background-color: #eef1f5;
+  color: #0c2340;
   -webkit-font-smoothing: antialiased;
 }
 
 ::-webkit-scrollbar         { width: 5px; }
-::-webkit-scrollbar-track   { background: #1c1c1c; }
-::-webkit-scrollbar-thumb   { background: #C4A130; }
+::-webkit-scrollbar-track   { background: #0f2d50; }
+::-webkit-scrollbar-thumb   { background: #bb9c60; }
 
 .font-display { font-family: 'Oswald', 'Arial Narrow', sans-serif; }

@@ -96,7 +96,7 @@ export default function Admin() {
   return (
     <div>
       {/* Page header */}
-      <div className="bg-gea-black border-b border-gea-gold py-10">
+      <div className="bg-snfc-navy border-b border-snfc-gold py-10">
         <div className="max-w-7xl mx-auto px-4">
           <h1
             className="text-5xl font-display font-bold text-white uppercase tracking-widest"
@@ -123,7 +123,7 @@ export default function Admin() {
             key={t}
             onClick={() => setTab(t)}
             className={`px-5 py-2 text-xs font-display uppercase tracking-widest transition-colors border-l border-gray-200 first:border-l-0 ${
-              tab === t ? 'bg-gea-black text-gea-gold' : 'bg-white text-gray-500 hover:text-gea-black'
+              tab === t ? 'bg-snfc-navy text-snfc-gold' : 'bg-white text-gray-500 hover:text-snfc-navy'
             }`}
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
           >
@@ -148,7 +148,7 @@ export default function Admin() {
                   value={seasonLabel}
                   onChange={e => setSeasonLabel(e.target.value)}
                   placeholder="2025–2026"
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                   required
                 />
               </div>
@@ -161,13 +161,13 @@ export default function Admin() {
                   value={seasonYear}
                   onChange={e => setSeasonYear(e.target.value)}
                   placeholder="2026"
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="bg-gea-black text-white px-4 py-2 border-0 text-sm font-semibold hover:bg-gea-charcoal transition-colors"
+                className="bg-snfc-navy text-white px-4 py-2 border-0 text-sm font-semibold hover:bg-snfc-charcoal transition-colors"
               >
                 Add Season
               </button>
@@ -218,7 +218,7 @@ export default function Admin() {
                 <select
                   value={gameSeasonId}
                   onChange={e => setGameSeasonId(e.target.value)}
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                 >
                   {[...seasons].sort((a, b) => b.year - a.year).map(s => (
                     <option key={s.id} value={s.id}>{s.label}</option>
@@ -231,7 +231,7 @@ export default function Admin() {
                   type="date"
                   value={gameDate}
                   onChange={e => setGameDate(e.target.value)}
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                   required
                 />
               </div>
@@ -244,15 +244,15 @@ export default function Admin() {
                   value={oppName}
                   onChange={e => setOppName(e.target.value)}
                   placeholder="Lincoln United FC"
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                   required
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Location</label>
                 <div className="flex gap-1">
-                  <input value={oppCity} onChange={e => setOppCity(e.target.value)} placeholder="City" className="flex-1 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-gea-gold" />
-                  <input value={oppState} onChange={e => setOppState(e.target.value)} placeholder="NE" className="w-12 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-gea-gold" />
+                  <input value={oppCity} onChange={e => setOppCity(e.target.value)} placeholder="City" className="flex-1 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-snfc-gold" />
+                  <input value={oppState} onChange={e => setOppState(e.target.value)} placeholder="NE" className="w-12 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-snfc-gold" />
                 </div>
               </div>
             </div>
@@ -264,14 +264,14 @@ export default function Admin() {
                   value={venue}
                   onChange={e => setVenue(e.target.value)}
                   placeholder="Gretna Sports Complex"
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Venue City/St</label>
                 <div className="flex gap-1">
-                  <input value={venueCity} onChange={e => setVenueCity(e.target.value)} placeholder="City" className="flex-1 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-gea-gold" />
-                  <input value={venueState} onChange={e => setVenueState(e.target.value)} placeholder="NE" className="w-12 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-gea-gold" />
+                  <input value={venueCity} onChange={e => setVenueCity(e.target.value)} placeholder="City" className="flex-1 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-snfc-gold" />
+                  <input value={venueState} onChange={e => setVenueState(e.target.value)} placeholder="NE" className="w-12 border border-gray-200 border-0 px-2 py-2 text-sm focus:outline-none focus:border-snfc-gold" />
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function Admin() {
                 <select
                   value={isHome ? 'home' : 'away'}
                   onChange={e => setIsHome(e.target.value === 'home')}
-                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold"
+                  className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold"
                 >
                   <option value="home">Home</option>
                   <option value="away">Away</option>
@@ -290,11 +290,11 @@ export default function Admin() {
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Goals For</label>
-                <input type="number" min="0" value={goalsFor} onChange={e => setGoalsFor(e.target.value)} className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold" required />
+                <input type="number" min="0" value={goalsFor} onChange={e => setGoalsFor(e.target.value)} className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold" required />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Goals Against</label>
-                <input type="number" min="0" value={goalsAgainst} onChange={e => setGoalsAgainst(e.target.value)} className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold" required />
+                <input type="number" min="0" value={goalsAgainst} onChange={e => setGoalsAgainst(e.target.value)} className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold" required />
               </div>
             </div>
 
@@ -305,7 +305,7 @@ export default function Admin() {
                 <button
                   type="button"
                   onClick={() => setGoalInputs(prev => [...prev, { minute: '', scorerId: '', assisterId: '' }])}
-                  className="text-xs text-gea-gold font-semibold hover:text-gea-gold-light flex items-center gap-1"
+                  className="text-xs text-snfc-gold font-semibold hover:text-snfc-gold-light flex items-center gap-1"
                 >
                   <Plus size={12} /> Add goal
                 </button>
@@ -318,12 +318,12 @@ export default function Admin() {
                       placeholder="Min"
                       value={goal.minute}
                       onChange={e => setGoalInputs(prev => prev.map((g, j) => j === i ? { ...g, minute: e.target.value } : g))}
-                      className="w-16 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-gea-gold"
+                      className="w-16 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-snfc-gold"
                     />
                     <select
                       value={goal.scorerId}
                       onChange={e => setGoalInputs(prev => prev.map((g, j) => j === i ? { ...g, scorerId: e.target.value } : g))}
-                      className="flex-1 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-gea-gold"
+                      className="flex-1 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-snfc-gold"
                     >
                       <option value="">Scorer...</option>
                       {PLAYERS.map(p => <option key={p.id} value={p.id}>{p.name} (#{p.number})</option>)}
@@ -331,7 +331,7 @@ export default function Admin() {
                     <select
                       value={goal.assisterId}
                       onChange={e => setGoalInputs(prev => prev.map((g, j) => j === i ? { ...g, assisterId: e.target.value } : g))}
-                      className="flex-1 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-gea-gold"
+                      className="flex-1 border border-gray-200 border-0 px-2 py-1.5 text-sm focus:outline-none focus:border-snfc-gold"
                     >
                       <option value="">Assist (opt)</option>
                       {PLAYERS.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -355,13 +355,13 @@ export default function Admin() {
                 onChange={e => setNotes(e.target.value)}
                 rows={2}
                 placeholder="Optional notes about the match..."
-                className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-gea-gold resize-none"
+                className="w-full border border-gray-200 border-0 px-3 py-2 text-sm focus:outline-none focus:border-snfc-gold resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-gea-black text-white px-5 py-2.5 border-0 text-sm font-semibold hover:bg-gea-charcoal transition-colors w-full"
+              className="bg-snfc-navy text-white px-5 py-2.5 border-0 text-sm font-semibold hover:bg-snfc-charcoal transition-colors w-full"
             >
               Save Game
             </button>
@@ -384,7 +384,7 @@ export default function Admin() {
             </pre>
             <button
               onClick={() => { navigator.clipboard.writeText(exportData); flash('Copied to clipboard!'); }}
-              className="mt-3 bg-gea-black text-white px-4 py-2 border-0 text-sm font-semibold hover:bg-gea-charcoal transition-colors flex items-center gap-2"
+              className="mt-3 bg-snfc-navy text-white px-4 py-2 border-0 text-sm font-semibold hover:bg-snfc-charcoal transition-colors flex items-center gap-2"
             >
               <Upload size={14} /> Copy to Clipboard
             </button>

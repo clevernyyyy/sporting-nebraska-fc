@@ -22,7 +22,7 @@ export default function GameCard({ game }: { game: Game }) {
   return (
     <Link
       to={`/games/${game.id}`}
-      className={`flex items-stretch bg-white hover:bg-gray-50 transition-colors border border-gray-200 hover:border-gea-gold group overflow-hidden`}
+      className={`flex items-stretch bg-white hover:bg-gray-50 transition-colors border border-gray-200 hover:border-snfc-gold group overflow-hidden`}
     >
       {/* Left result bar */}
       <div className={`w-1.5 shrink-0 ${style.bar}`} />
@@ -40,7 +40,7 @@ export default function GameCard({ game }: { game: Game }) {
       {/* Score */}
       <div className="flex items-center justify-center w-20 shrink-0 border-r border-l border-gray-100 bg-white">
         <span
-          className="text-2xl font-display font-bold text-gea-black"
+          className="text-2xl font-display font-bold text-snfc-navy"
           style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
         >
           {game.goalsFor}–{game.goalsAgainst}
@@ -49,7 +49,7 @@ export default function GameCard({ game }: { game: Game }) {
 
       {/* Main info */}
       <div className="flex-1 px-4 py-3 min-w-0">
-        <div className="font-semibold text-gea-black group-hover:text-gea-gold transition-colors truncate">
+        <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors truncate">
           vs. {game.opponent.name}
         </div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-0.5 text-xs text-gray-500">
@@ -67,7 +67,7 @@ export default function GameCard({ game }: { game: Game }) {
             <span
               className={`inline-flex items-center gap-1.5 font-display uppercase tracking-wide ${
                 game.tournament.result === 'champion'
-                  ? 'text-gea-gold font-bold'
+                  ? 'text-snfc-gold font-bold'
                   : 'text-gray-400'
               }`}
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
@@ -83,7 +83,7 @@ export default function GameCard({ game }: { game: Game }) {
       </div>
 
       {/* Arrow */}
-      <div className="flex items-center pr-4 text-gray-300 group-hover:text-gea-gold transition-colors">
+      <div className="flex items-center pr-4 text-gray-300 group-hover:text-snfc-gold transition-colors">
         →
       </div>
     </Link>

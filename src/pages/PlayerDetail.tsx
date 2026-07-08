@@ -35,7 +35,7 @@ export default function PlayerDetail() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center text-gray-400">
         Player not found.{' '}
-        <Link to="/players" className="text-gea-gold underline">Back to roster</Link>
+        <Link to="/players" className="text-snfc-gold underline">Back to roster</Link>
       </div>
     );
   }
@@ -99,11 +99,11 @@ export default function PlayerDetail() {
   return (
     <div>
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <div className="bg-gea-black">
+      <div className="bg-snfc-navy">
         <div className="max-w-7xl mx-auto px-4 pt-6 pb-0">
           <Link
             to="/players"
-            className="inline-flex items-center gap-1.5 text-white/40 hover:text-gea-gold transition-colors text-xs font-display uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-1.5 text-white/40 hover:text-snfc-gold transition-colors text-xs font-display uppercase tracking-wider mb-6"
             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
           >
             <ArrowLeft size={13} /> Roster
@@ -112,7 +112,7 @@ export default function PlayerDetail() {
 
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-[320px_1fr] gap-0">
           {/* Photo column */}
-          <div className="relative bg-gea-black-soft overflow-hidden">
+          <div className="relative bg-snfc-navy-soft overflow-hidden">
             {player.photoUrl ? (
               <img
                 src={player.photoUrl}
@@ -126,7 +126,7 @@ export default function PlayerDetail() {
             )}
             {/* Number corner */}
             <div
-              className="absolute top-0 left-0 bg-gea-gold text-gea-black w-12 h-12 flex items-center justify-center font-display font-bold text-2xl"
+              className="absolute top-0 left-0 bg-snfc-gold text-snfc-navy w-12 h-12 flex items-center justify-center font-display font-bold text-2xl"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               {player.number}
@@ -166,7 +166,7 @@ export default function PlayerDetail() {
               </h1>
               {player.nickname && (
                 <div
-                  className="text-gea-gold font-display uppercase tracking-widest text-lg mt-1 mb-4"
+                  className="text-snfc-gold font-display uppercase tracking-widest text-lg mt-1 mb-4"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
                   "{player.nickname}"
@@ -184,7 +184,7 @@ export default function PlayerDetail() {
               <div className="flex">
               {player.position === 'GK' ? (
                 <div className="pr-4 md:pr-8 border-r border-white/10">
-                  <div className="text-3xl md:text-5xl font-display font-bold text-gea-gold leading-none"
+                  <div className="text-3xl md:text-5xl font-display font-bold text-snfc-gold leading-none"
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                     {careerTotals.saves}
                   </div>
@@ -196,7 +196,7 @@ export default function PlayerDetail() {
               ) : (
                 <>
                   <div className="pr-4 md:pr-8 border-r border-white/10">
-                    <div className="text-3xl md:text-5xl font-display font-bold text-gea-gold leading-none"
+                    <div className="text-3xl md:text-5xl font-display font-bold text-snfc-gold leading-none"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                       {careerTotals.goals}
                     </div>
@@ -206,7 +206,7 @@ export default function PlayerDetail() {
                     </div>
                   </div>
                   <div className="px-4 md:px-8 border-r border-white/10">
-                    <div className="text-3xl md:text-5xl font-display font-bold text-gea-gold leading-none"
+                    <div className="text-3xl md:text-5xl font-display font-bold text-snfc-gold leading-none"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                       {careerTotals.assists}
                     </div>
@@ -273,9 +273,9 @@ export default function PlayerDetail() {
         {allPhotos.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-1 h-6 bg-gea-gold" />
+              <div className="w-1 h-6 bg-snfc-gold" />
               <h2
-                className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+                className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Photos
@@ -287,7 +287,7 @@ export default function PlayerDetail() {
               {allPhotos.map((url, i) => (
                 <div
                   key={i}
-                  className="aspect-square overflow-hidden cursor-pointer bg-gea-black group"
+                  className="aspect-square overflow-hidden cursor-pointer bg-snfc-navy group"
                   onClick={() => setLightboxIdx(i)}
                 >
                   <img
@@ -305,9 +305,9 @@ export default function PlayerDetail() {
         {player.highlights && player.highlights.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-1 h-6 bg-gea-gold" />
+              <div className="w-1 h-6 bg-snfc-gold" />
               <h2
-                className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+                className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Video Highlights
@@ -320,7 +320,7 @@ export default function PlayerDetail() {
                 const date = new Date(h.date + 'T12:00:00');
                 return (
                   <div key={i} className="bg-white">
-                    <div className="aspect-video bg-gea-black">
+                    <div className="aspect-video bg-snfc-navy">
                       <iframe
                         src={ytId ? `https://www.youtube.com/embed/${ytId}` : h.url}
                         title={h.title}
@@ -329,8 +329,8 @@ export default function PlayerDetail() {
                         allowFullScreen
                       />
                     </div>
-                    <div className="px-4 py-3 border-t-2 border-gea-gold">
-                      <div className="font-semibold text-gea-black text-sm">{h.title}</div>
+                    <div className="px-4 py-3 border-t-2 border-snfc-gold">
+                      <div className="font-semibold text-snfc-navy text-sm">{h.title}</div>
                       <div className="flex items-center justify-between mt-1">
                         <div className="text-xs text-gray-400">
                           {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -339,7 +339,7 @@ export default function PlayerDetail() {
                           href={h.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-xs text-gea-gold hover:text-gea-gold-light transition-colors"
+                          className="flex items-center gap-1 text-xs text-snfc-gold hover:text-snfc-gold-light transition-colors"
                         >
                           <ExternalLink size={11} /> Watch
                         </a>
@@ -355,9 +355,9 @@ export default function PlayerDetail() {
         {/* ── SEASON STATS ───────────────────────────────────── */}
         <div>
           <div className="flex items-center gap-4 mb-5">
-            <div className="w-1 h-6 bg-gea-gold" />
+            <div className="w-1 h-6 bg-snfc-gold" />
             <h2
-              className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+              className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
               Statistics
@@ -368,7 +368,7 @@ export default function PlayerDetail() {
             <table className="w-full text-sm">
               <thead>
                 <tr
-                  className="bg-gea-black text-white/60 text-xs font-display uppercase tracking-widest"
+                  className="bg-snfc-navy text-white/60 text-xs font-display uppercase tracking-widest"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
                   <th className="text-left px-3 py-2 font-medium">Season</th>
@@ -390,21 +390,21 @@ export default function PlayerDetail() {
                   const ps = s[player.id] ?? { goals: 0, assists: 0, saves: 0, yellowCards: 0, redCards: 0 };
                   const isGK = player.position === 'GK';
                   return (
-                    <tr key={season.id} className={`hover:bg-gray-50 ${season.isActive ? 'border-l-2 border-l-gea-gold' : 'border-l-2 border-l-transparent'}`}>
+                    <tr key={season.id} className={`hover:bg-gray-50 ${season.isActive ? 'border-l-2 border-l-snfc-gold' : 'border-l-2 border-l-transparent'}`}>
                       <td className="px-3 py-2 font-medium whitespace-nowrap">
-                        <span className={season.isActive ? 'text-gea-gold' : 'text-gray-700'}>
+                        <span className={season.isActive ? 'text-snfc-gold' : 'text-gray-700'}>
                           {season.id.split('-').map(y => `'${y.slice(2)}`).join('–')}
                         </span>
                       </td>
                       {isGK ? (
-                        <td className="px-3 py-2 text-center font-bold text-gea-black">{ps.saves}</td>
+                        <td className="px-3 py-2 text-center font-bold text-snfc-navy">{ps.saves}</td>
                       ) : (
                         <>
-                          <td className="px-3 py-2 text-center font-bold text-gea-black">{ps.goals}</td>
-                          <td className="px-3 py-2 text-center font-bold text-gea-black">{ps.assists}</td>
+                          <td className="px-3 py-2 text-center font-bold text-snfc-navy">{ps.goals}</td>
+                          <td className="px-3 py-2 text-center font-bold text-snfc-navy">{ps.assists}</td>
                           <td className="px-3 py-2 text-center">
                             <span
-                              className={`font-display font-bold text-base ${ps.goals + ps.assists > 0 ? 'text-gea-gold' : 'text-gray-300'}`}
+                              className={`font-display font-bold text-base ${ps.goals + ps.assists > 0 ? 'text-snfc-gold' : 'text-gray-300'}`}
                               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                             >
                               {ps.goals + ps.assists}
@@ -426,19 +426,19 @@ export default function PlayerDetail() {
                   );
                 })}
                 {playerSeasons.length > 1 && (
-                  <tr className="bg-gea-black/5 border-t-2 border-gea-gold">
-                    <td className="px-3 py-2 font-display font-bold uppercase tracking-wider text-gea-black text-xs"
+                  <tr className="bg-snfc-navy/5 border-t-2 border-snfc-gold">
+                    <td className="px-3 py-2 font-display font-bold uppercase tracking-wider text-snfc-navy text-xs"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                       Total
                     </td>
                     {player.position === 'GK' ? (
-                      <td className="px-3 py-2 text-center font-bold text-gea-black">{careerTotals.saves}</td>
+                      <td className="px-3 py-2 text-center font-bold text-snfc-navy">{careerTotals.saves}</td>
                     ) : (
                       <>
-                        <td className="px-3 py-2 text-center font-bold text-gea-black">{careerTotals.goals}</td>
-                        <td className="px-3 py-2 text-center font-bold text-gea-black">{careerTotals.assists}</td>
+                        <td className="px-3 py-2 text-center font-bold text-snfc-navy">{careerTotals.goals}</td>
+                        <td className="px-3 py-2 text-center font-bold text-snfc-navy">{careerTotals.assists}</td>
                         <td className="px-3 py-2 text-center">
-                          <span className="font-display font-bold text-base text-gea-gold"
+                          <span className="font-display font-bold text-base text-snfc-gold"
                             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                             {careerTotals.goals + careerTotals.assists}
                           </span>
@@ -466,9 +466,9 @@ export default function PlayerDetail() {
         {keeperGames.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-1 h-6 bg-gea-gold" />
+              <div className="w-1 h-6 bg-snfc-gold" />
               <h2
-                className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+                className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Goalkeeper Appearances
@@ -487,9 +487,9 @@ export default function PlayerDetail() {
                     return shots > 0 ? `${Math.round((keeperTotals.saves / shots) * 100)}%` : '—';
                   })() },
               ].map(({ label, value }) => (
-                <div key={label} className="bg-gea-black px-4 py-4 text-center">
+                <div key={label} className="bg-snfc-navy px-4 py-4 text-center">
                   <div
-                    className="text-2xl font-display font-bold text-gea-gold leading-none"
+                    className="text-2xl font-display font-bold text-snfc-gold leading-none"
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                   >
                     {value}
@@ -509,7 +509,7 @@ export default function PlayerDetail() {
               <table className="w-full text-sm">
                 <thead>
                   <tr
-                    className="bg-gea-black text-white/60 text-xs font-display uppercase tracking-widest"
+                    className="bg-snfc-navy text-white/60 text-xs font-display uppercase tracking-widest"
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                   >
                     <th className="text-left px-4 py-3 font-medium">Date</th>
@@ -538,12 +538,12 @@ export default function PlayerDetail() {
                         <td className="px-4 py-3">
                           <Link
                             to={`/games/${game.id}`}
-                            className="font-medium text-gea-black hover:text-gea-gold transition-colors"
+                            className="font-medium text-snfc-navy hover:text-snfc-gold transition-colors"
                           >
                             vs. {game.opponent.name}
                           </Link>
                         </td>
-                        <td className="px-4 py-3 text-center font-bold text-gea-black">{saves}</td>
+                        <td className="px-4 py-3 text-center font-bold text-snfc-navy">{saves}</td>
                         <td className="px-4 py-3 text-center">
                           {isClean ? (
                             <span
@@ -580,9 +580,9 @@ export default function PlayerDetail() {
         {goalContribGames.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-1 h-6 bg-gea-gold" />
+              <div className="w-1 h-6 bg-snfc-gold" />
               <h2
-                className="text-xl font-display font-bold uppercase tracking-widest text-gea-black"
+                className="text-xl font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
                 Goal Contributions
@@ -601,7 +601,7 @@ export default function PlayerDetail() {
                   <div key={game.id} className="flex items-center gap-3 px-4 py-3">
                     <div className={`w-1 self-stretch shrink-0 ${isWin ? 'bg-emerald-400' : isDraw ? 'bg-amber-400' : 'bg-red-400'}`} />
                     <div className="flex-1 min-w-0">
-                      <Link to={`/games/${game.id}`} className="font-medium text-sm text-gea-black hover:text-gea-gold transition-colors leading-tight block truncate">
+                      <Link to={`/games/${game.id}`} className="font-medium text-sm text-snfc-navy hover:text-snfc-gold transition-colors leading-tight block truncate">
                         vs. {game.opponent.name}
                       </Link>
                       <div className="text-xs text-gray-400">
@@ -612,7 +612,7 @@ export default function PlayerDetail() {
                       className="text-sm font-display font-bold shrink-0 w-10 text-center"
                       style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                     >
-                      <span className={isWin ? 'text-gea-gold' : 'text-red-500'}>{game.goalsFor}</span>
+                      <span className={isWin ? 'text-snfc-gold' : 'text-red-500'}>{game.goalsFor}</span>
                       <span className="text-gray-300 mx-0.5">–</span>
                       <span className="text-gray-500">{game.goalsAgainst}</span>
                     </div>
@@ -622,8 +622,8 @@ export default function PlayerDetail() {
                           key={i}
                           className={`text-xs font-display font-bold px-1.5 py-0.5 text-center whitespace-nowrap ${
                             c.scorerId === player.id
-                              ? 'bg-gea-black text-gea-gold'
-                              : 'bg-gea-gold/20 text-gea-gold-dark border border-gea-gold/30'
+                              ? 'bg-snfc-navy text-snfc-gold'
+                              : 'bg-snfc-gold/20 text-snfc-gold-dark border border-snfc-gold/30'
                           }`}
                           style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                           title={c.scorerId === player.id ? 'Goal' : 'Assist'}
