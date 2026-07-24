@@ -6,6 +6,7 @@ import GameDetail from './pages/GameDetail';
 import Players from './pages/Players';
 import PlayerDetail from './pages/PlayerDetail';
 import CameraComparison from './pages/CameraComparison';
+import DomainIdeas from './pages/DomainIdeas';
 
 function WithLayout() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route path="/camera-comparison" element={<CameraComparison />} />
+        <Route path="/domain-ideas" element={<DomainIdeas />} />
         <Route element={<WithLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Games />} />

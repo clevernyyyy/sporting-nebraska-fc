@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Domain Evaluation — Youth Sports Coaching Platform</title>
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #F2EFE9;
+  --border: #E0DBD3;
+  --text: #1A1819;
+  --muted: #68656D;
+  --accent: #D64E0B;
+  --accent-dim: #FDF1EC;
+
+  --s-color: #166534; --s-bg: #F0FDF4; --s-border: #BBF7D0;
+  --m-color: #92400E; --m-bg: #FFFBEB; --m-border: #FDE68A;
+  --p-color: #991B1B; --p-bg: #FEF2F2; --p-border: #FECACA;
+  --o-color: #5B21B6; --o-bg: #F5F3FF; --o-border: #DDD6FE;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── HEADER ── */
+.site-header {
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3.5rem;
+}
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.report-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: normal;
+  line-height: 1.15;
+  margin-bottom: 0.875rem;
+  text-wrap: balance;
+}
+.report-sub {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+/* ── SECTION ── */
+.eval-section { margin-bottom: 4rem; }
+.section-head {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+.section-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.section-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.375rem;
+  font-weight: normal;
+  text-wrap: balance;
+  margin-bottom: 0.3rem;
+}
+.section-desc { font-size: 0.9375rem; color: var(--muted); }
+
+/* ── FEATURED CARDS ── */
+.cards { display: flex; flex-direction: column; gap: 1rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 0 1.25rem;
+  align-items: start;
+}
+.card.dim {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--border);
+}
+
+.rank {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem;
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 0.45rem;
+}
+.rank-dash { color: var(--border); font-size: 1.125rem; padding-top: 0.45rem; font-family: Georgia, serif; }
+
+.card-body {}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.domain {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.2em 0.55em;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-family: system-ui, sans-serif;
+}
+.bs { color: var(--s-color); background: var(--s-bg); border: 1px solid var(--s-border); }
+.bm { color: var(--m-color); background: var(--m-bg); border: 1px solid var(--m-border); }
+.bp { color: var(--p-color); background: var(--p-bg); border: 1px solid var(--p-border); }
+.bo { color: var(--o-color); background: var(--o-bg); border: 1px solid var(--o-border); }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.625rem;
+}
+.tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+}
+
+.writeup {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.78;
+}
+.dim .writeup {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9375rem;
+}
+
+/* ── FOLD DIVIDER ── */
+.fold-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0 2.5rem;
+}
+.fold-line { flex: 1; height: 1px; background: var(--border); }
+.fold-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── REFERENCE SECTION ── */
+.ref-intro {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.ref-group { margin-bottom: 2.25rem; }
+.ref-group-title {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.5rem;
+}
+.ref-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.875rem 1rem;
+}
+.ref-domain {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.35rem;
+  overflow-wrap: break-word;
+}
+.ref-badges { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.4rem; }
+.ref-note {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 560px) {
+  .card { grid-template-columns: 1fr; gap: 0; }
+  .rank, .rank-dash { font-size: 0.75rem; color: var(--muted); padding-top: 0; margin-bottom: 0.375rem; }
+  .ref-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <p class="eyebrow">Brand Identity · Domain Evaluation</p>
+    <h1 class="report-title">Domain Name Report</h1>
+    <p class="report-sub">Youth sports coaching video platform — launches with soccer, built to expand. Monthly subscription: parents upload game video, coaches send back breakdowns, meet in person week four. Target customer: parents of youth players who value .com.</p>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════════════════ TOP 5 OVERALL -->
+    <section class="eval-section">
+      <div class="section-head">
+        <p class="section-eyebrow">Category 1</p>
+        <h2 class="section-title">Top 5 Overall</h2>
+        <p class="section-desc">The five strongest domains on the full list, regardless of price.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="rank">1</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">icoach.com</span>
+              <span class="badge bo">Premium — Make Offer</span>
+            </div>
+            <div class="tags"><span class="tag">Top 5 Overall</span></div>
+            <p class="writeup">Two syllables, pure .com, instantly understood by every sports parent. "My coach" and "I coach" land simultaneously — it's personal without being alienating. If you can acquire this for under $20k, it's the single best domain on your entire list. Worth engaging a domain broker to open the conversation low.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">2</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">filmroomiq.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags">
+              <span class="tag">Top 5 Overall</span>
+              <span class="tag">Top 5 Non-Premium</span>
+            </div>
+            <p class="writeup">"Film room" is the phrase every youth sports parent with a kid on a club team already knows — it's where coaches go to review game tape. Pairing it with "IQ" signals smart, analytical coaching without being jargony. It's a .com with no aftermarket premium attached, which makes it potentially the best value on this entire list.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">3</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">replayiq.com</span>
+              <span class="badge bm">$1,000</span>
+            </div>
+            <div class="tags"><span class="tag">Top 5 Overall</span></div>
+            <p class="writeup">At a grand it's the most cost-effective premium on the list. "Replay" is universally understood — parents say it to their kids on the couch watching sports. The IQ suffix layers in the expert coaching angle. Clean, .com, sport-agnostic, and priced for a startup.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">4</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">playerfilm.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags">
+              <span class="tag">Top 5 Overall</span>
+              <span class="tag">Top 5 Non-Premium</span>
+              <span class="tag">Discovered</span>
+            </div>
+            <p class="writeup">Confirmed available via RDAP. Short, clean .com that works in two directions: "film of your player" and "player film review." It's exactly what the product is. Scales naturally beyond soccer since "player" is universal. The sleeper pick of the entire exercise.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">5</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">chalktalk.net</span>
+              <span class="badge bm">$1,200</span>
+            </div>
+            <div class="tags"><span class="tag">Top 5 Overall</span></div>
+            <p class="writeup">No other phrase on this list carries the emotional weight that "chalk talk" does for a sports family. It instantly evokes the intimate coach-on-whiteboard moment every youth athlete has experienced. At $1.2k it's accessible. The .net TLD is the only real knock — but the brand association is strong enough that most parents won't care once they hear the name.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════ TOP 5 NON-PREMIUM -->
+    <section class="eval-section">
+      <div class="section-head">
+        <p class="section-eyebrow">Category 2</p>
+        <h2 class="section-title">Top 5 Non-Premium</h2>
+        <p class="section-desc">Available at standard registration pricing — roughly $10–20 per year.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card dim">
+          <div class="rank">1</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">filmroomiq.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">The strongest non-premium .com on the entire list. See Top 5 Overall for full writeup.</p>
+          </div>
+        </div>
+
+        <div class="card dim">
+          <div class="rank">2</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">playerfilm.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">Confirmed available. Short, precise, sport-agnostic .com. See Top 5 Overall for full writeup.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">3</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">replayroom.ai</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags">
+              <span class="tag">Top 5 Non-Premium</span>
+              <span class="tag">Discovered</span>
+            </div>
+            <p class="writeup">"Replay room" does two things at once: "replay" is the universal sports-parent word for watching footage back, and "room" borrows the warmth of "film room" and "locker room" — spaces that feel dedicated and serious. The .ai TLD is the one caveat for a non-tech-savvy audience, but unlike .io it has enough mainstream recognition now (Siri, Alexa, every AI product on TV) that most parents will read it as "smart coaching tool" rather than "tech startup I don't understand." Strong brand with real expansion legs.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">4</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">matchdayfilm.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags">
+              <span class="tag">Top 5 Non-Premium</span>
+              <span class="tag">Discovered</span>
+            </div>
+            <p class="writeup">"Match day" is deeply embedded in youth soccer culture — it's what parents call game day. Combining it with "film" makes the value proposition self-evident. Slightly longer than ideal, but the specificity helps with the launch market and SEO. Confirmed available via RDAP lookup.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">5</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">gamefilm.net</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags"><span class="tag">Top 5 Non-Premium</span></div>
+            <p class="writeup">The phrase "game film" is exactly what coaches and sports parents call this content. You lose a bit on the .net TLD, but the term is so on-point — and the .com is deeply premium — that it earns its spot. Straightforward, no confusion, no explanation needed.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════ TOP 5 DISCOVERED -->
+    <section class="eval-section">
+      <div class="section-head">
+        <p class="section-eyebrow">Category 3</p>
+        <h2 class="section-title">Top 5 Discovered</h2>
+        <p class="section-desc">Domains not on your original list — confirmed available via RDAP lookup.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card dim">
+          <div class="rank">1</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">playerfilm.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">The strongest find from the search — also ranked fourth overall. See Top 5 Overall for full writeup.</p>
+          </div>
+        </div>
+
+        <div class="card dim">
+          <div class="rank">2</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">replayroom.ai</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">Warm, evocative, strong expansion potential. See Top 5 Non-Premium for full writeup.</p>
+          </div>
+        </div>
+
+        <div class="card dim">
+          <div class="rank">3</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">matchdayfilm.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">Soccer-native, clear value prop, available. See Top 5 Non-Premium for full writeup.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">4</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">sportbreakdown.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags"><span class="tag">Discovered</span></div>
+            <p class="writeup">Confirmed available. The most expansion-ready domain from the search — "sport" is singular (not "sports"), which reads cleanly, and "breakdown" is exactly the verb coaches and analysts use. Strong SEO potential. More clinical than warm, but it scales across any sport without modification.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank">5</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">pitchbreakdown.com</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <div class="tags"><span class="tag">Discovered</span></div>
+            <p class="writeup">Confirmed available. "Pitch" is the correct term for a soccer field, which immediately signals to your launch audience that this was built for them. "Breakdown" nails the service. Strong launch domain if you want to go deep on soccer identity before expanding — you can always rebrand from a position of strength.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════ NOTABLE -->
+    <section class="eval-section">
+      <div class="section-head">
+        <p class="section-eyebrow">Also Worth Considering</p>
+        <h2 class="section-title">Notable Writeups</h2>
+        <p class="section-desc">Didn't crack the top five lists, but deserve a close look.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="rank-dash">—</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">gametapes.ai</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">"Game tapes" is exactly the phrase a club coach uses on a Tuesday night — "we watched the game tapes and here's what we saw." It's plural, which subconsciously signals volume and thoroughness: not just one clip, but a full analysis. The .ai suffix reinforces that the breakdown is intelligent and structured, not just raw footage. Slightly longer than ideal, but every word earns its place. Works across all sports without translation.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="rank-dash">—</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="domain">filmrooms.ai</span>
+              <span class="badge bs">Standard ~$15/yr</span>
+            </div>
+            <p class="writeup">"Film room" is already one of the strongest phrases on your list — the plural version subtly implies scale: coaches, teams, multiple players all getting their own breakdown. The .ai extension adds the analytical coaching layer without feeling gimmicky. If the brand leans into the idea that every player deserves their own film room experience, this domain tells that story in two words. The main trade-off versus filmroomiq.com is the TLD — .com will always outperform .ai for parent trust — but as a non-premium alternative it holds up.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════ FULL REFERENCE -->
+    <div class="fold-divider">
+      <div class="fold-line"></div>
+      <span class="fold-label">Full Reference</span>
+      <div class="fold-line"></div>
+    </div>
+
+    <section class="eval-section">
+      <p class="ref-intro">All remaining domains from your original list and the discovery search, with brief notes on why each ranked below the featured picks.</p>
+
+      <div class="ref-group">
+        <p class="ref-group-title">Standard Registration (~$10–20/yr)</p>
+        <div class="ref-grid">
+
+          <div class="ref-card">
+            <span class="ref-domain">breakdown.ninja</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Right word, wrong extension. .ninja undermines the credibility parents expect from a coaching service.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">breakdownguide.net</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Long and .net. "Guide" dilutes the coaching authority — implies reference content over active coaching.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">breakdown.tips</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Too generic. .tips reads as a content blog, not a paid subscription coaching platform.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gamefilm.app</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.app is tech-native. Strong phrase, but parents may not recognize the TLD as legitimate.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gamefilm.reviews</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Unusual TLD for a subscription product. Implies aggregation or review site, not a coaching service.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gamefilm.info</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.info is low-trust for consumers — commonly associated with spam and parked domains.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">film.game</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Novel structure but reads backwards to most users. Clever, not clear.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gamefilm.ninja</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Both words are right, but .ninja kills parent trust in this context.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">review.cam</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.cam is obscure for the parent demographic. "Review" alone lacks specificity.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">report.cam</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Same .cam concern. "Report" reads as a school grade, not a coaching session.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">report.app</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.app TLD; "report" is clinical and cold for a youth sports context.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coach.space</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.space reads as futuristic or gimmicky. "Coach" is strong but the TLD undercuts it.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coaches.space</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Same .space concern as coach.space, with added plural ambiguity.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">train.space</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Vague word combined with an unusual TLD. "Train" could mean anything.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">train.games</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.games actively miscategorizes the service as entertainment or esports.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">mycoach.games</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">"mycoach" is warm and personal, but .games sends the wrong category signal to parents.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">mycoaches.guru</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Awkward plural + .guru reads as either a tech tool or a wellness brand. Neither fits.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">i.coach</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Genuinely interesting structure, but a single-letter prefix is hard to type and easy to misremember.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">icoach.guru</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Strong front half (icoach) undermined by .guru. icoach.training is the better fallback TLD.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">replayiq.pro</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.pro reads as "professional" — right positioning — but loses meaningfully to replayiq.com at $1k.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coachlens.org</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.org implies nonprofit or educational institution — misaligned with subscription revenue.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gametape.info</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.info is low-trust. "Gametape" is solid but the TLD kills it before the brand can form.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gametape.ninja</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.ninja issue again. The .com is $250k; no alternative TLD rescues this brand without it.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">nextplay.tech</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.tech is alienating for the parent demographic. "Next play" is a nice coaching phrase though.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">filmroom.info</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Excellent words, wrong extension. filmroomiq.com is the version to register instead.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">frameiq.org</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">.org implies nonprofit. "Frame IQ" is interesting (film frame + analytics) but the TLD creates wrong expectations.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">training.locker</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Creative — the locker room is a real coaching space — but .locker is too obscure for parents to trust or recall.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">gamefilmiq.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Four syllables plus .ai is a lot to ask. Gets unwieldy to say aloud and hard to typeset as a wordmark.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">filmroomiq.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Strong concept, but filmroomiq.com is available at the same price point. Don't take the .ai when the .com is there.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coacheyes.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Interesting concept (seeing what a coach sees), but "eyes" is awkward pluralized and .ai adds complexity.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">icoach.training</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Actually self-explanatory — "icoach.training" reads naturally. Good fallback if icoach.com and icoach.app are both out of range.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">trainingreview.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">Two clear words that work together, but the combination is generic — no distinctive hook to anchor a brand.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">breakdowniq.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">"Breakdown" + "IQ" + .ai is three layers of analytical positioning that work on paper but feel slight as a name.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">webreakdown.ai</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">"We" as a prefix suggests community more than personal coaching. The .ai adds another layer of removal.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">replayroom.org</span>
+            <div class="ref-badges"><span class="badge bs">Standard</span></div>
+            <p class="ref-note">"Replay room" is a strong concept (see replayroom.ai), but .org implies nonprofit — misaligned with subscription revenue.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">youthcoachfilm.com</span>
+            <div class="ref-badges"><span class="badge bs">Standard · Confirmed Available</span></div>
+            <p class="ref-note">Long but fully descriptive. Works well for SEO targeting the launch market. Better as a redirect than a primary brand.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coachfilm.net</span>
+            <div class="ref-badges"><span class="badge bs">Standard · Confirmed Available</span></div>
+            <p class="ref-note">Strong words, .net TLD. The .com (coachfilm.com) has been registered since 2013.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ref-group">
+        <p class="ref-group-title">Premium / Aftermarket — not featured above</p>
+        <div class="ref-grid">
+
+          <div class="ref-card">
+            <span class="ref-domain">gametape.com</span>
+            <div class="ref-badges"><span class="badge bp">$250,000</span></div>
+            <p class="ref-note">An extraordinary domain in an entirely different pricing universe. File under dream list and revisit in year five.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">icoach.ai</span>
+            <div class="ref-badges"><span class="badge bp">$52,000</span></div>
+            <p class="ref-note">The .ai version of icoach.com. At this price, put the investment toward the .com instead.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">icoach.app</span>
+            <div class="ref-badges"><span class="badge bp">$12,000</span></div>
+            <p class="ref-note">Strong brand, less valuable extension at this price point. icoach.com is the version worth the spend.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">chalktalk.org</span>
+            <div class="ref-badges"><span class="badge bp">$8,000</span></div>
+            <p class="ref-note">.org misaligns with a subscription business. Spend $1.2k on chalktalk.net instead and save $6.8k.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">frameiq.com</span>
+            <div class="ref-badges"><span class="badge bm">$8,400</span></div>
+            <p class="ref-note">"Frame" is a film/video term but less immediately obvious than "replay" or "film room." Steep for a concept that needs explaining.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">trainingiq.com</span>
+            <div class="ref-badges"><span class="badge bm">$9,900</span></div>
+            <p class="ref-note">Broad and clear, but omits video/film entirely — loses the specificity of the service at a startup-unfriendly price.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">replayroom.com</span>
+            <div class="ref-badges"><span class="badge bm">$9,900</span></div>
+            <p class="ref-note">The .com upgrade path for replayroom.ai. If the brand resonates and budget allows, worth it down the road.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coachintel.com</span>
+            <div class="ref-badges"><span class="badge bm">$3,600</span></div>
+            <p class="ref-note">"Intel" reads as intelligence data — relevant for film review, but feels corporate rather than coaching-warm.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">coachloop.com</span>
+            <div class="ref-badges"><span class="badge bm">$7,000</span></div>
+            <p class="ref-note">"Loop" suggests iteration and feedback — both relevant — but reads more B2B SaaS than youth sports coaching.</p>
+          </div>
+
+          <div class="ref-card">
+            <span class="ref-domain">secondlook.ai</span>
+            <div class="ref-badges"><span class="badge bo">Make Offer</span></div>
+            <p class="ref-note">Evocative phrase — "taking a second look" at game footage is exactly what coaches do. Pricing uncertainty plus .ai makes it hard to commit without market validation first.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+</body>
+</html>
