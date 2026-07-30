@@ -244,27 +244,6 @@ export default function Home() {
           </div>
         </div>}
 
-        {/* Next Up */}
-        {upcomingGames.length > 0 && (
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <SectionLabel>Next Up</SectionLabel>
-              <Link
-                to="/games"
-                className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
-                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-              >
-                Full Schedule →
-              </Link>
-            </div>
-            <div className="space-y-px border border-gray-200">
-              {upcomingGames.slice(0, 3).map((game: Game) => (
-                <GameCard key={game.id} game={game} />
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Recent Results */}
         {pastGames.length > 0 && (
           <div>
@@ -280,6 +259,27 @@ export default function Home() {
             </div>
             <div className="space-y-px border border-gray-200">
               {pastGames.slice(0, 5).map((game: Game) => (
+                <GameCard key={game.id} game={game} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Next Up */}
+        {upcomingGames.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <SectionLabel>Next Up</SectionLabel>
+              <Link
+                to="/games"
+                className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+              >
+                Full Schedule →
+              </Link>
+            </div>
+            <div className="space-y-px border border-gray-200">
+              {upcomingGames.slice(0, 3).map((game: Game) => (
                 <GameCard key={game.id} game={game} />
               ))}
             </div>
