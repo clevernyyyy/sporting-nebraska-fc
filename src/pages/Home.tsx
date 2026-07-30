@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAppData, getSeasonRecord, getPlayerStats } from '../data';
 import StatCard from '../components/StatCard';
-import GameCard from '../components/GameCard';
+import GameCard, { isUpcomingGame } from '../components/GameCard';
 import SeasonSelector from '../components/SeasonSelector';
 import PlayerSilhouette from '../components/PlayerSilhouette';
 import type { Game, Season } from '../types';
@@ -29,13 +29,20 @@ export default function Home() {
   const activeSeason = seasons.find((s: Season) => s.isActive) ?? seasons[seasons.length - 1];
   const [seasonId, setSeasonId] = useState(activeSeason?.id ?? '');
 
-  const record = getSeasonRecord(seasonId, games);
   const stats = getPlayerStats(seasonId, games);
   const currentSeason = seasons.find((s: Season) => s.id === seasonId);
 
-  const seasonGames = [...games]
-    .filter((g: Game) => g.seasonId === seasonId)
+  const seasonGames = games.filter((g: Game) => g.seasonId === seasonId);
+
+  const upcomingGames = [...seasonGames]
+    .filter(isUpcomingGame)
+    .sort((a: Game, b: Game) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  const pastGames = [...seasonGames]
+    .filter(g => !isUpcomingGame(g))
     .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const record = getSeasonRecord(seasonId, pastGames);
 
   const topScorer = [...players]
     .map(p => ({ player: p, goals: stats[p.id]?.goals ?? 0 }))
@@ -46,7 +53,7 @@ export default function Home() {
     .sort((a, b) => b.assists - a.assists)[0];
 
   const winPct = record.played > 0 ? Math.round((record.wins / record.played) * 100) : 0;
-  const cleanSheets = seasonGames.filter((g: Game) => g.goalsAgainst === 0).length;
+  const cleanSheets = pastGames.filter((g: Game) => g.goalsAgainst === 0).length;
 
   return (
     <div>
@@ -131,7 +138,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-14">
 
         {/* Season selector + stats */}
-        <div>
+        {pastGames.length > 0 && <div>
           <div className="flex items-center justify-between mb-6">
             <SectionLabel>Season Stats</SectionLabel>
             <SeasonSelector seasons={seasons} currentId={seasonId} onChange={setSeasonId} />
@@ -143,10 +150,10 @@ export default function Home() {
             <StatCard label="Goals Against" value={record.goalsAgainst} />
             <StatCard label="Win Rate" value={`${winPct}%`} sub={`${record.wins}W · ${record.draws}D · ${record.losses}L`} invert />
           </div>
-        </div>
+        </div>}
 
         {/* Leaders + Clean Sheets */}
-        <div>
+        {pastGames.length > 0 && <div>
           <SectionLabel>Season Leaders</SectionLabel>
           <div className="grid md:grid-cols-3 gap-0 border border-gray-200 bg-gray-200 gap-px">
             {topScorer && topScorer.goals > 0 && (
@@ -230,36 +237,61 @@ export default function Home() {
                   Clean Sheets
                 </div>
                 <div className="text-sm text-white/60">
-                  Shutouts in {seasonGames.length} games
+                  Shutouts in {pastGames.length} games
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>}
+
+        {/* Next Up */}
+        {upcomingGames.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <SectionLabel>Next Up</SectionLabel>
+              <Link
+                to="/games"
+                className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+              >
+                Full Schedule →
+              </Link>
+            </div>
+            <div className="space-y-px border border-gray-200">
+              {upcomingGames.slice(0, 3).map((game: Game) => (
+                <GameCard key={game.id} game={game} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Recent Results */}
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <SectionLabel>Recent Results</SectionLabel>
-            <Link
-              to="/games"
-              className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
-              style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-            >
-              All Games →
-            </Link>
+        {pastGames.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <SectionLabel>Recent Results</SectionLabel>
+              <Link
+                to="/games"
+                className="text-xs font-display uppercase tracking-widest text-snfc-gold hover:text-snfc-gold-light transition-colors"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+              >
+                All Results →
+              </Link>
+            </div>
+            <div className="space-y-px border border-gray-200">
+              {pastGames.slice(0, 5).map((game: Game) => (
+                <GameCard key={game.id} game={game} />
+              ))}
+            </div>
           </div>
-          <div className="space-y-px border border-gray-200">
-            {seasonGames.slice(0, 5).map((game: Game) => (
-              <GameCard key={game.id} game={game} />
-            ))}
-            {seasonGames.length === 0 && (
-              <div className="py-16 text-center text-gray-400 bg-white border border-gray-200">
-                No games yet this season.
-              </div>
-            )}
+        )}
+
+        {/* No games yet */}
+        {seasonGames.length === 0 && (
+          <div className="py-16 text-center text-gray-400 bg-white border border-gray-200">
+            No games yet this season.
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
