@@ -175,7 +175,11 @@ export default function PlayerDetail() {
               {!player.nickname && <div className="mb-4" />}
 
               {player.bio && (
-                <p className="text-white/60 text-sm leading-relaxed max-w-md">{player.bio}</p>
+                <div className="text-white/60 text-sm leading-relaxed max-w-md space-y-3">
+                  {player.bio.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
               )}
             </div>
 
