@@ -3,9 +3,10 @@ import PlayerSilhouette from './PlayerSilhouette';
 
 interface Props {
   coach: Coach;
+  photoOnly?: boolean;
 }
 
-export default function CoachCard({ coach }: Props) {
+export default function CoachCard({ coach, photoOnly = false }: Props) {
   return (
     <div className="bg-white border border-gray-200 overflow-hidden">
       {/* Photo or silhouette */}
@@ -33,17 +34,19 @@ export default function CoachCard({ coach }: Props) {
       </div>
 
       {/* Info */}
-      <div className="p-3 border-t-2 border-snfc-gold">
-        <div className="font-semibold text-snfc-navy text-sm leading-tight truncate">
-          {coach.name}
+      {!photoOnly && (
+        <div className="p-3 border-t-2 border-snfc-gold">
+          <div className="font-semibold text-snfc-navy text-sm leading-tight truncate">
+            {coach.name}
+          </div>
+          <div
+            className="text-xs text-gray-400 mt-0.5 font-display uppercase tracking-wider"
+            style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+          >
+            {coach.title}
+          </div>
         </div>
-        <div
-          className="text-xs text-gray-400 mt-0.5 font-display uppercase tracking-wider"
-          style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-        >
-          {coach.title}
-        </div>
-      </div>
+      )}
     </div>
   );
 }

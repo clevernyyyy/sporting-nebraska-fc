@@ -108,9 +108,18 @@ export default function Players() {
             <div className="space-y-px">
               {seasonCoaches.map(coach => (
                 <div key={coach.id} className="bg-white border border-gray-200 flex gap-0 overflow-hidden">
-                  <CoachCard coach={coach} />
+                  <CoachCard coach={coach} photoOnly />
                   {coach.bio && (
                     <div className="flex-1 p-5 flex flex-col justify-center border-l border-gray-100">
+                      <div className="mb-3">
+                        <div className="font-semibold text-snfc-navy text-sm leading-tight">{coach.name}</div>
+                        <div
+                          className="text-xs text-gray-400 mt-0.5 font-display uppercase tracking-wider"
+                          style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                        >
+                          {coach.title}
+                        </div>
+                      </div>
                       <div
                         className="text-xs font-display uppercase tracking-widest text-snfc-gold mb-2"
                         style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
@@ -173,7 +182,7 @@ export default function Players() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
                               {player.photoUrl && (
-                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-top border border-snfc-gold" alt="" />
+                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-center border border-snfc-gold" alt="" />
                               )}
                               <Link to={`/players/${player.id}`} className="font-medium text-snfc-navy hover:text-snfc-gold transition-colors">
                                 {player.name}
