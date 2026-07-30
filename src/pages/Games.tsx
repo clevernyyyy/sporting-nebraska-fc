@@ -61,16 +61,6 @@ export default function Games() {
 
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-10">
 
-        {/* Upcoming */}
-        {upcoming.length > 0 && (
-          <div>
-            <SectionLabel>Upcoming</SectionLabel>
-            <div className="space-y-px border border-gray-200">
-              {upcoming.map((game: Game) => <GameCard key={game.id} game={game} />)}
-            </div>
-          </div>
-        )}
-
         {/* Results */}
         <div>
           {past.length > 0 && (
@@ -137,6 +127,17 @@ export default function Games() {
             )}
           </div>
         </div>
+
+        {/* Upcoming */}
+        {upcoming.length > 0 && (
+          <div>
+            <SectionLabel>Upcoming</SectionLabel>
+            <div className="space-y-px border border-gray-200">
+              {upcoming.map((game: Game) => <GameCard key={game.id} game={game} />)}
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );
