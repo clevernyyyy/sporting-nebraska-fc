@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Home, Plane, ExternalLink, Clock, Trophy, HelpCircle, X } from 'lucide-react';
+import { ArrowLeft, Calendar, Home, Plane, ExternalLink, Clock, Trophy, HelpCircle, X, MapPin } from 'lucide-react';
 import { getAppData } from '../data';
 import { PLAYERS } from '../data/players';
 import type { GoalEvent, CardEvent } from '../types';
 import DisciplinaryCard from '../components/DisciplinaryCard';
+import { isUpcomingGame } from '../components/GameCard';
 
 function playerName(id: string, guestName?: string) {
   if (id === 'opponent') return 'Opponent';
@@ -29,6 +30,7 @@ export default function GameDetail() {
 
   const season = seasons.find((s: { id: string }) => s.id === game.seasonId);
   const date = new Date(game.date + 'T12:00:00');
+  const upcoming = isUpcomingGame(game);
   const isWin = game.goalsFor > game.goalsAgainst;
   const isDraw = game.goalsFor === game.goalsAgainst;
 
@@ -88,7 +90,9 @@ export default function GameDetail() {
             </div>
             <div
               className={`shrink-0 px-4 py-1.5 text-sm font-display font-bold uppercase tracking-wider border ${
-                isWin
+                upcoming
+                  ? 'border-snfc-gold text-snfc-gold'
+                  : isWin
                   ? 'border-emerald-400 text-emerald-400'
                   : isDraw
                   ? 'border-white/30 text-white/60'
@@ -96,11 +100,45 @@ export default function GameDetail() {
               }`}
               style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
             >
-              {isWin ? 'WIN' : isDraw ? 'DRAW' : 'LOSS'}
+              {upcoming ? 'Upcoming' : isWin ? 'WIN' : isDraw ? 'DRAW' : 'LOSS'}
             </div>
           </div>
 
-          {/* Score */}
+          {/* Score / kickoff */}
+          {upcoming ? (
+            <div className="flex items-center gap-6 mb-8">
+              <div className="text-center bg-white/10 px-6 py-4">
+                <div className="text-xs text-white/40 font-display uppercase tracking-widest mb-1"
+                  style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                  {date.toLocaleDateString('en-US', { weekday: 'long' })}
+                </div>
+                <div
+                  className="text-5xl font-display font-bold text-snfc-gold leading-none"
+                  style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                >
+                  {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </div>
+                {game.startTime && (
+                  <div className="text-white/60 text-sm mt-2">
+                    {(() => {
+                      const [h, m] = game.startTime.split(':').map(Number);
+                      const ampm = h >= 12 ? 'PM' : 'AM';
+                      return `${h > 12 ? h - 12 : h || 12}:${String(m).padStart(2, '0')} ${ampm}`;
+                    })()}
+                  </div>
+                )}
+              </div>
+              {game.venueCity !== 'TBD' && (
+                <div className="text-white/50 text-sm flex items-start gap-1.5">
+                  <MapPin size={13} className="mt-0.5 shrink-0" />
+                  <div>
+                    <div>{game.venue}</div>
+                    <div>{game.venueCity}, {game.venueState}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
           <div className="flex items-center gap-8 mb-8">
             <div className="text-center">
               <div className="text-xs text-white/40 font-display uppercase tracking-widest mb-1"
@@ -129,6 +167,7 @@ export default function GameDetail() {
               </div>
             </div>
           </div>
+          )}
 
           {/* Tournament banner + keeper saves */}
           {(game.tournament || game.keeperSaves !== undefined || game.keeperSavesDetail) && (

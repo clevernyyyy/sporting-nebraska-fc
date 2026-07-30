@@ -1,6 +1,32 @@
 import type { Game } from '../types';
 
 export const GAMES: Game[] = [
+  // ── Past Results ───────────────────────────────────────────────
+  {
+    id: 'g0',
+    seasonId: '2026-2027',
+    date: '2026-07-12',
+    startTime: '10:00',
+    opponent: { name: 'Millard United', city: 'Omaha', state: 'NE' },
+    venue: 'Gretna Soccer Complex',
+    venueAddress: '20550 Gretna Rd',
+    venueCity: 'Gretna',
+    venueState: 'NE',
+    isHome: true,
+    goalsFor: 3,
+    goalsAgainst: 1,
+    goals: [
+      { minute: 8,  scorerId: 'p9',  assisterId: 'p13' },
+      { minute: 22, scorerId: 'p13', assisterId: 'p8'  },
+      { minute: 44, scorerId: 'p8'                      },
+    ],
+    opponentGoals: [
+      { minute: 31, scorerId: 'opponent' },
+    ],
+    keeperSaves: 4,
+    notes: 'Strong season opener. The team pressed high and created chances early. Evan opened the scoring with a sharp finish after a quick layoff from Aybel. A momentary lapse let Millard pull one back just after the half-hour mark, but the team responded well and closed out the half with a third goal.',
+  },
+
   // ── NYSL Schedule ──────────────────────────────────────────────
   {
     id: 'g1',
