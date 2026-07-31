@@ -108,8 +108,11 @@ export default function Players() {
             <div className="space-y-px">
               {seasonCoaches.map(coach => (
                 <div key={coach.id} className="bg-white border border-gray-200 flex gap-0 overflow-hidden">
-                  <CoachCard coach={coach} photoOnly />
+                  <div className="w-40 shrink-0">
+                    <CoachCard coach={coach} photoOnly />
+                  </div>
                   {coach.bio && (
+
                     <div className="flex-1 p-5 flex flex-col justify-center border-l border-gray-100">
                       <div className="mb-3">
                         <div className="font-semibold text-snfc-navy text-sm leading-tight">{coach.name}</div>
