@@ -51,11 +51,12 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'p6',
-    name: 'Joseph Thomas',
+    name: 'Joey Thomas',
     number: 7,
     position: 'LW',
     secondaryPositions: ['RW'],
-    bio: 'A relentless forward who never stops running. Joseph presses from the front, stretches defenses with his pace, and has a nose for goal when the chance falls his way.',
+    bio: 'Wearing #7, Joey is a speedy, creative winger who can also lock things down on defense. Known for his quick feet, vision, and precise passing, he thrives under pressure and has a knack for delivering on set pieces, whether it\'s a corner kick, free kick, or penalty. Off the field, Joey loves playing golf with friends, chess and strategy games, piano, and traveling. A passionate Chelsea supporter, he\'s always playing soccer with his older brother, Charlie, and his quick wit and endless curiosity keep everyone around him laughing.',
+    photoUrl: './photos/player-joey-thomas.jpg',
     seasons: ['2026-2027'],
   },
   {
