@@ -45,6 +45,7 @@ export const PLAYERS: Player[] = [
     position: 'LB',
     secondaryPositions: ['CB'],
     bio: 'Dependable on the left side, Charles combines defensive solidity with smart overlapping runs. He tracks back diligently and wins the ball without fuss, making him a cornerstone of the defensive unit.',
+    photoUrl: './photos/player-charles-worthington.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -91,6 +92,7 @@ export const PLAYERS: Player[] = [
     position: 'CM',
     secondaryPositions: ['CAM'],
     bio: 'A technically tidy midfielder who keeps the ball moving with crisp, economical passing. Porter finds pockets of space naturally and links defense to attack with understated effectiveness.',
+    photoUrl: './photos/player-porter-schulte.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -138,6 +140,7 @@ export const PLAYERS: Player[] = [
     position: 'CAM',
     secondaryPositions: ['LW'],
     bio: 'Creative and inventive in the final third, Louie is always looking to make something happen. He combines quick passing with smart movement and has a flair for the unexpected that keeps defenses guessing.',
+    photoUrl: './photos/player-louie-mendenhall.jpg',
     seasons: ['2026-2027'],
   },
 ];
