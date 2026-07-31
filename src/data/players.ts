@@ -7,7 +7,8 @@ export const PLAYERS: Player[] = [
     number: 1,
     position: 'GK',
     secondaryPositions: [],
-    bio: 'A natural shot-stopper with big hands and an even bigger presence in goal. Mack commands his area confidently, distributes well under pressure, and has the athleticism to make highlight-reel saves look routine.',
+    bio: 'Standing tall in goal as #1, Mack is dedicated to keeping the ball out of the net! Outside of required practices, he routinely picks up extra conditioning opportunities to constantly refine his goalkeeping skills. Off the field, Mack stays active with swim team (where the butterfly stroke is his specialty!), golfing with his friends, and playing the piano. A bit of a goofball at heart, he\'s always up for a good time and loves being part of this team!',
+    photoUrl: './photos/player-mack-lowry.jpg',
     seasons: ['2026-2027'],
   },
   {
