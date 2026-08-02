@@ -134,7 +134,7 @@ export default function PlayerDetail() {
           </div>
 
           {/* Info column */}
-          <div className="p-8 md:p-10 flex flex-col justify-between">
+          <div className="px-8 md:px-10 pt-0 pb-8 md:pb-10 flex flex-col justify-between">
             <div>
               {/* Primary + secondary positions */}
               <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -175,7 +175,7 @@ export default function PlayerDetail() {
               {!player.nickname && <div className="mb-4" />}
 
               {player.bio && (
-                <div className="text-white/60 text-sm leading-relaxed max-w-md space-y-3">
+                <div className="text-white/60 text-sm leading-relaxed space-y-3">
                   {player.bio.split('\n\n').map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}
