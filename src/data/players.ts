@@ -26,8 +26,9 @@ export const PLAYERS: Player[] = [
     name: 'Leo Aliano',
     number: 3,
     position: 'RB',
-    secondaryPositions: ['CB'],
+    secondaryPositions: ['LB', 'CB'],
     bio: 'Industrious and physical, Leo anchors the midfield with relentless pressing and intelligent positioning. He wins the ball early and recycles possession quickly, giving the team a reliable platform to build from.',
+    photoUrl: './photos/player-leo-aliano.jpg',
     seasons: ['2026-2027'],
   },
   {
