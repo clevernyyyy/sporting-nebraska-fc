@@ -27,7 +27,7 @@ export const PLAYERS: Player[] = [
     number: 3,
     position: 'RB',
     secondaryPositions: ['LB', 'CB'],
-    bio: 'Industrious and physical, Leo anchors the midfield with relentless pressing and intelligent positioning. He wins the ball early and recycles possession quickly, giving the team a reliable platform to build from.',
+    bio: 'Leo is a dependable, hardworking defender who consistently performs at a high level and brings reliability to every match. He has an excellent understanding of defensive positioning and the responsibilities of his role, allowing him to anticipate play, make smart decisions, and provide stability to the back line.\n\nOne of Leo\'s greatest strengths is his coachability. He embraces feedback, quickly applies it, and continually refines his game. His team-first mentality is evident in his willingness to play wherever he is needed.\n\nLeo\'s commitment to excellence extends beyond team training. He regularly dedicates additional time to improving his ball control, technical ability, and overall game, which is reflected in his consistency on the field. His strong work ethic, versatility, and competitive mindset make him a valuable contributor and a player his teammates and coaches can depend on in any situation.',
     photoUrl: './photos/player-leo-aliano.jpg',
     seasons: ['2026-2027'],
   },
