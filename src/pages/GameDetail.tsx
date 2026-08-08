@@ -143,7 +143,7 @@ export default function GameDetail() {
             <div className="text-center">
               <div className="text-xs text-white/40 font-display uppercase tracking-widest mb-1"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
-                Gretna EA
+                Sporting NE FC
               </div>
               <div
                 className="text-8xl font-display font-bold text-snfc-gold leading-none"
@@ -170,7 +170,7 @@ export default function GameDetail() {
           )}
 
           {/* Tournament banner + keeper saves */}
-          {(game.tournament || game.keeperSaves !== undefined || game.keeperSavesDetail) && (
+          {(game.tournament || game.keeperSaves !== undefined || game.keeperSavesDetail || game.shotsOnGoal !== undefined || game.shotsOnGoalDetail) && (
             <div className="flex flex-wrap items-center gap-3 mb-6">
 
           {game.tournament && (() => {
@@ -240,6 +240,50 @@ export default function GameDetail() {
             </div>
           )}
 
+          {/* Shots on goal pill */}
+          {(game.shotsOnGoal !== undefined || game.shotsOnGoalDetail) && (
+            <div className="inline-flex items-center gap-3 bg-white/10 px-4 py-2 flex-wrap">
+              <span className="text-white/50 text-xs font-display uppercase tracking-wider"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                Shots on Goal
+              </span>
+              <span className="text-snfc-gold font-display font-bold text-xl leading-none"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                {game.shotsOnGoal ?? game.shotsOnGoalDetail!.reduce((s, d) => s + d.sog, 0)}
+              </span>
+            </div>
+          )}
+
+            </div>
+          )}
+
+          {/* Shots on goal breakdown */}
+          {game.shotsOnGoalDetail && game.shotsOnGoalDetail.length > 0 && (
+            <div className="mb-6 -mt-2">
+              <div className="text-white/40 text-[10px] font-display uppercase tracking-widest mb-2"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                Shots on Goal by Player
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[...game.shotsOnGoalDetail]
+                  .sort((a, b) => b.sog - a.sog)
+                  .map(({ playerId, sog }) => (
+                    <Link
+                      key={playerId}
+                      to={`/players/${playerId}`}
+                      className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 transition-colors px-2.5 py-1"
+                    >
+                      <span className="text-white/70 text-xs"
+                        style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                        {playerName(playerId)}
+                      </span>
+                      <span className="text-snfc-gold font-display font-bold text-sm leading-none"
+                        style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                        {sog}
+                      </span>
+                    </Link>
+                  ))}
+              </div>
             </div>
           )}
 
@@ -376,7 +420,7 @@ export default function GameDetail() {
                           ) : (
                             <div className="flex items-center gap-2 flex-wrap">
                               {scorerPlayer?.photoUrl && (
-                                <img src={scorerPlayer.photoUrl} className="w-6 h-6 object-cover object-top border border-snfc-gold shrink-0" alt="" />
+                                <img src={scorerPlayer.photoUrl} className="w-6 h-6 object-cover object-[center_25%] border border-snfc-gold shrink-0" alt="" />
                               )}
                               {isGuest ? (
                                 <span className="font-semibold text-snfc-navy text-sm">
@@ -464,7 +508,7 @@ export default function GameDetail() {
                       ) : (
                         <>
                           {cardPlayer?.photoUrl && (
-                            <img src={cardPlayer.photoUrl} className="w-6 h-6 object-cover object-top border border-gray-200 shrink-0" alt="" />
+                            <img src={cardPlayer.photoUrl} className="w-6 h-6 object-cover object-[center_25%] border border-gray-200 shrink-0" alt="" />
                           )}
                           <Link to={`/players/${card.playerId}`} className="font-semibold text-snfc-navy hover:text-snfc-gold transition-colors text-sm">
                             {cardPlayer?.name ?? 'Unknown'}
@@ -495,7 +539,7 @@ export default function GameDetail() {
                 className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
-                Gretna Scorers
+                Sporting NE FC Scorers
               </h2>
             </div>
             <div className="divide-y divide-gray-100">
@@ -509,7 +553,7 @@ export default function GameDetail() {
                 return (
                   <div key={i} className="flex items-center gap-3 px-5 py-3">
                     {scorer?.photoUrl && (
-                      <img src={scorer.photoUrl} alt="" className="w-10 h-10 object-cover object-top border-2 border-snfc-gold" />
+                      <img src={scorer.photoUrl} alt="" className="w-10 h-10 object-cover object-[center_25%] border-2 border-snfc-gold" />
                     )}
                     <div className="flex-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
@@ -565,7 +609,7 @@ export default function GameDetail() {
                 className="font-display font-bold uppercase tracking-widest text-snfc-navy"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
               >
-                Match Notes
+                Match Summary
               </h2>
             </div>
             <p className="px-5 py-4 text-gray-600 text-sm leading-relaxed">{game.notes}</p>

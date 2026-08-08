@@ -72,7 +72,7 @@ export default function Home() {
         {/* Gold vignette bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-snfc-navy/80 to-transparent" />
 
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 py-16 md:py-20">
           <img
             src={SNFC_LOGO}
             alt="Sporting Nebraska FC"
@@ -170,7 +170,7 @@ export default function Home() {
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
                     {topScorer.player.photoUrl
-                      ? <img src={topScorer.player.photoUrl} className="w-full h-full object-cover object-top" alt="" />
+                      ? <img src={topScorer.player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
                       : <PlayerSilhouette />
                     }
                   </div>
@@ -203,7 +203,7 @@ export default function Home() {
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
                     {topAssist.player.photoUrl
-                      ? <img src={topAssist.player.photoUrl} className="w-full h-full object-cover object-top" alt="" />
+                      ? <img src={topAssist.player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
                       : <PlayerSilhouette />
                     }
                   </div>

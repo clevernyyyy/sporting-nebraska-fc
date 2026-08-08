@@ -48,18 +48,19 @@ export default function PlayerDetail() {
   const groupColor = GROUP_COLORS[group] ?? 'bg-gray-600';
 
   const careerTotals = playerSeasons.reduce(
-    (acc: { goals: number; assists: number; saves: number; yellowCards: number; redCards: number }, season: Season) => {
+    (acc: { goals: number; assists: number; saves: number; shotsOnGoal: number; yellowCards: number; redCards: number }, season: Season) => {
       const s = getPlayerStats(season.id, games);
-      const ps = s[player.id] ?? { goals: 0, assists: 0, saves: 0, yellowCards: 0, redCards: 0 };
+      const ps = s[player.id] ?? { goals: 0, assists: 0, saves: 0, shotsOnGoal: 0, yellowCards: 0, redCards: 0 };
       return {
         goals:       acc.goals       + ps.goals,
         assists:     acc.assists     + ps.assists,
         saves:       acc.saves       + ps.saves,
+        shotsOnGoal: acc.shotsOnGoal + ps.shotsOnGoal,
         yellowCards: acc.yellowCards + ps.yellowCards,
         redCards:    acc.redCards    + ps.redCards,
       };
     },
-    { goals: 0, assists: 0, saves: 0, yellowCards: 0, redCards: 0 }
+    { goals: 0, assists: 0, saves: 0, shotsOnGoal: 0, yellowCards: 0, redCards: 0 }
   );
 
   const goalContribGames = games
@@ -264,7 +265,7 @@ export default function PlayerDetail() {
               </div>
               <div className="text-white/20 text-[10px] mt-3"
                 style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
-                * Stats tracked since geasoccer.com was created
+                * Stats tracked since sportingfc-ne.com was created
               </div>
             </div>
           </div>
@@ -382,6 +383,7 @@ export default function PlayerDetail() {
                         <th className="text-center px-3 py-2 font-medium">G</th>
                         <th className="text-center px-3 py-2 font-medium">A</th>
                         <th className="text-center px-3 py-2 font-medium">G+A</th>
+                        <th className="text-center px-3 py-2 font-medium" title="Shots on Goal">SOG</th>
                       </>
                   }
                   <th className="text-center px-3 py-2 font-medium"><span className="flex justify-center"><DisciplinaryCard type="yellow" size="sm" tilt={false} /></span></th>
@@ -391,7 +393,7 @@ export default function PlayerDetail() {
               <tbody className="divide-y divide-gray-100">
                 {playerSeasons.map((season: Season) => {
                   const s = getPlayerStats(season.id, games);
-                  const ps = s[player.id] ?? { goals: 0, assists: 0, saves: 0, yellowCards: 0, redCards: 0 };
+                  const ps = s[player.id] ?? { goals: 0, assists: 0, saves: 0, shotsOnGoal: 0, yellowCards: 0, redCards: 0 };
                   const isGK = player.position === 'GK';
                   return (
                     <tr key={season.id} className={`hover:bg-gray-50 ${season.isActive ? 'border-l-2 border-l-snfc-gold' : 'border-l-2 border-l-transparent'}`}>
@@ -413,6 +415,11 @@ export default function PlayerDetail() {
                             >
                               {ps.goals + ps.assists}
                             </span>
+                          </td>
+                          <td className="px-3 py-2 text-center">
+                            {ps.shotsOnGoal > 0
+                              ? <span className="font-bold text-snfc-navy">{ps.shotsOnGoal}</span>
+                              : <span className="text-gray-200">—</span>}
                           </td>
                         </>
                       )}
@@ -446,6 +453,9 @@ export default function PlayerDetail() {
                             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                             {careerTotals.goals + careerTotals.assists}
                           </span>
+                        </td>
+                        <td className="px-3 py-2 text-center font-bold text-snfc-navy">
+                          {careerTotals.shotsOnGoal > 0 ? careerTotals.shotsOnGoal : <span className="text-gray-200">—</span>}
                         </td>
                       </>
                     )}

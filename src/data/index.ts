@@ -52,7 +52,7 @@ export function getPlayerStats(seasonId: string, games: Game[]): Record<string, 
 
   const ensure = (id: string) => {
     if (!stats[id]) {
-      stats[id] = { goals: 0, assists: 0, gamesPlayed: 0, saves: 0, yellowCards: 0, redCards: 0 };
+      stats[id] = { goals: 0, assists: 0, gamesPlayed: 0, saves: 0, shotsOnGoal: 0, yellowCards: 0, redCards: 0 };
     }
   };
 
@@ -86,6 +86,16 @@ export function getPlayerStats(seasonId: string, games: Game[]): Record<string, 
       ensure(id);
       stats[id].gamesPlayed += 1;
     });
+  }
+
+  // Shots on goal — attribute per-player from detail breakdown
+  for (const game of seasonGames) {
+    if (game.shotsOnGoalDetail) {
+      for (const { playerId, sog } of game.shotsOnGoalDetail) {
+        ensure(playerId);
+        stats[playerId].shotsOnGoal += sog;
+      }
+    }
   }
 
   // Keeper saves — use per-player detail when available, else attribute to the GK

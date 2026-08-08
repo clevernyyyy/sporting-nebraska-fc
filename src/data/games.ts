@@ -6,17 +6,37 @@ export const GAMES: Game[] = [
     id: 'g1',
     seasonId: '2026-2027',
     date: '2026-08-08',
-    startTime: '08:30',
-    opponent: { name: 'LCFC', city: 'Lincoln', state: 'NE' },
-    venue: 'Nebraska MultiSports Complex',
-    venueAddress: '6925 Eastport Pkwy',
+    startTime: '09:00',
+    opponent: { name: 'Evolution SC LCFC Evo', city: 'Lincoln', state: 'NE' },
+    venue: 'MultiSport Complex 4B',
+    venueAddress: '8101 Eastport Pkwy',
     venueCity: 'La Vista',
     venueState: 'NE',
     isHome: false,
-    goalsFor: 0,
-    goalsAgainst: 0,
-    goals: [],
-    opponentGoals: [],
+    fieldType: 'turf',
+    uniformColor: 'white',
+    goalsFor: 2,
+    goalsAgainst: 2,
+    goals: [
+      { minute: 8,  scorerId: 'p7' },              // #18 Levi
+      { minute: 20, scorerId: 'p9', assisterId: 'p14' }, // Evan (Ricky assist)
+    ],
+    opponentGoals: [
+      { minute: 14, scorerId: 'opponent' },
+      { minute: 25, scorerId: 'opponent' },
+    ],
+    keeperSaves: 11,
+    shotsOnGoal: 12,
+    shotsOnGoalDetail: [
+      { playerId: 'p12', sog: 2 }, // George
+      { playerId: 'p11', sog: 1 }, // Davey
+      { playerId: 'p4',  sog: 1 }, // #5 Ryder
+      { playerId: 'p7',  sog: 2 }, // Levi (incl. goal)
+      { playerId: 'p9',  sog: 2 }, // Evan (incl. goal)
+      { playerId: 'p13', sog: 2 }, // Aybel ("Able")
+      { playerId: 'p14', sog: 2 }, // #17 Ricky
+    ],
+    notes: 'A hard-fought 2–2 draw against Evolution SC LCFC Evo on the turf. Levi opened the scoring in the 8th minute, and Evan added a second off a Ricky assist in the 20th. The team generated 12 shots on goal across the match and Mack was busy in net with 11 saves, including several sharp stops off Evolution free kicks to keep the game level.',
   },
   {
     id: 'g2',

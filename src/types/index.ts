@@ -97,6 +97,8 @@ export interface Game {
   opponentGoals: GoalEvent[];
   keeperSaves?: number;  // total saves this game (all keepers combined)
   keeperSavesDetail?: { keeperId: string; saves: number }[];  // per-keeper breakdown
+  shotsOnGoal?: number;  // total shots on goal this game (all our players combined)
+  shotsOnGoalDetail?: { playerId: string; sog: number }[];  // per-player breakdown
   cards?: CardEvent[];   // yellow/red cards received by our players
   highlights?: string[];
   notes?: string;
@@ -132,6 +134,7 @@ export interface PlayerStats {
   assists: number;
   gamesPlayed: number;
   saves: number;       // GK only — sum of keeperSaves across games
+  shotsOnGoal: number; // sum of shotsOnGoalDetail across games
   yellowCards: number;
   redCards: number;
 }

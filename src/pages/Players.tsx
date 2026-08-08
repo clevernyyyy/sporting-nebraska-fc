@@ -160,6 +160,7 @@ export default function Players() {
                     <th className="text-center px-4 py-3 font-medium">Goals</th>
                     <th className="text-center px-4 py-3 font-medium">Assists</th>
                     <th className="text-center px-4 py-3 font-medium">G+A</th>
+                    <th className="text-center px-4 py-3 font-medium" title="Shots on Goal">SOG</th>
                     <th className="text-center px-4 py-3 font-medium hidden md:table-cell">Saves</th>
                     <th className="text-center px-4 py-3 font-medium hidden md:table-cell"><span className="flex justify-center"><DisciplinaryCard type="yellow" size="sm" tilt={false} /></span></th>
                     <th className="text-center px-4 py-3 font-medium hidden md:table-cell"><span className="flex justify-center"><DisciplinaryCard type="red" size="sm" tilt={false} /></span></th>
@@ -173,7 +174,7 @@ export default function Players() {
                       return bTotal - aTotal;
                     })
                     .map((player: Player) => {
-                      const s = stats[player.id] ?? { goals: 0, assists: 0 };
+                      const s = stats[player.id] ?? { goals: 0, assists: 0, shotsOnGoal: 0 };
                       return (
                         <tr key={player.id} className="hover:bg-gray-50 transition-colors">
                           <td
@@ -185,7 +186,7 @@ export default function Players() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
                               {player.photoUrl && (
-                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-center border border-snfc-gold" alt="" />
+                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-[center_25%] border border-snfc-gold" alt="" />
                               )}
                               <Link to={`/players/${player.id}`} className="font-medium text-snfc-navy hover:text-snfc-gold transition-colors">
                                 {player.name}
@@ -209,6 +210,9 @@ export default function Players() {
                             >
                               {s.goals + s.assists}
                             </span>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            {s.shotsOnGoal > 0 ? <span className="font-bold text-snfc-navy">{s.shotsOnGoal}</span> : <span className="text-gray-200">—</span>}
                           </td>
                           <td className="px-4 py-3 text-center text-gray-400 hidden md:table-cell">
                             {s.saves > 0 ? <span className="font-bold text-snfc-navy">{s.saves}</span> : '—'}

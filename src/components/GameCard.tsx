@@ -3,7 +3,11 @@ import { MapPin, Trophy } from 'lucide-react';
 import type { Game } from '../types';
 
 export function isUpcomingGame(game: Game) {
-  return new Date(game.date + 'T23:59:59') > new Date();
+  // A game counts as "upcoming" only if its date is in the future.
+  // Games dated today or earlier are treated as completed results.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return new Date(game.date + 'T00:00:00') > today;
 }
 
 function getResult(game: Game): 'W' | 'D' | 'L' {
