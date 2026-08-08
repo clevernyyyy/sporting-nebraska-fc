@@ -8,7 +8,7 @@ export const PLAYERS: Player[] = [
     position: 'GK',
     secondaryPositions: [],
     bio: 'Standing tall in goal as #1, Mack is dedicated to keeping the ball out of the net! Outside of required practices, he routinely picks up extra conditioning opportunities to constantly refine his goalkeeping skills. Off the field, Mack stays active with swim team (where the butterfly stroke is his specialty!), golfing with his friends, and playing the piano. A bit of a goofball at heart, he\'s always up for a good time and loves being part of this team!',
-    photoUrl: './photos/player-mack-lowry.jpg',
+    photoUrl: './photos/profile-pictures/player-mack-lowry.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -18,7 +18,7 @@ export const PLAYERS: Player[] = [
     position: 'CB',
     secondaryPositions: ['CDM', 'LB', 'RB'],
     bio: 'Meet Gus, he\'s always ready to step up with strong defensive skills, smart positioning, and a determination to protect the goal. He stays calm under pressure, makes smart decisions when the game is on the line, and is a natural leader who keeps his teammates organized and motivated throughout the match.\n\nOff the field, Gus is known for his positive attitude and team-first mentality. He loves being part of the game, works hard to improve, and is always ready to have fun with his teammates.',
-    photoUrl: './photos/player-gus-bruening.jpg',
+    photoUrl: './photos/profile-pictures/player-gus-bruening.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -28,7 +28,7 @@ export const PLAYERS: Player[] = [
     position: 'RB',
     secondaryPositions: ['LB', 'CB'],
     bio: 'Leo is a dependable, hardworking defender who consistently performs at a high level and brings reliability to every match. He has an excellent understanding of defensive positioning and the responsibilities of his role, allowing him to anticipate play, make smart decisions, and provide stability to the back line.\n\nOne of Leo\'s greatest strengths is his coachability. He embraces feedback, quickly applies it, and continually refines his game. His team-first mentality is evident in his willingness to play wherever he is needed.\n\nLeo\'s commitment to excellence extends beyond team training. He regularly dedicates additional time to improving his ball control, technical ability, and overall game, which is reflected in his consistency on the field. His strong work ethic, versatility, and competitive mindset make him a valuable contributor and a player his teammates and coaches can depend on in any situation.',
-    photoUrl: './photos/player-leo-aliano.jpg',
+    photoUrl: './photos/profile-pictures/player-leo-aliano.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -47,7 +47,7 @@ export const PLAYERS: Player[] = [
     position: 'LB',
     secondaryPositions: ['CB'],
     bio: 'Dependable on the left side, Charles combines defensive solidity with smart overlapping runs. He tracks back diligently and wins the ball without fuss, making him a cornerstone of the defensive unit.',
-    photoUrl: './photos/player-charles-worthington.jpg',
+    photoUrl: './photos/profile-pictures/player-charles-worthington.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -57,7 +57,7 @@ export const PLAYERS: Player[] = [
     position: 'LW',
     secondaryPositions: ['RW', 'CAM'],
     bio: 'Wearing #7, Joey is a speedy, creative winger who can also lock things down on defense. Known for his quick feet, vision, and precise passing, he thrives under pressure and has a knack for delivering on set pieces, whether it\'s a corner kick, free kick, or penalty. Off the field, Joey loves playing golf with friends, chess and strategy games, piano, and traveling. A passionate Chelsea supporter, he\'s always playing soccer with his older brother, Charlie, and his quick wit and endless curiosity keep everyone around him laughing.',
-    photoUrl: './photos/player-joey-thomas.jpg',
+    photoUrl: './photos/profile-pictures/player-joey-thomas.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -76,6 +76,7 @@ export const PLAYERS: Player[] = [
     position: 'ST',
     secondaryPositions: ['LB', 'RB'],
     bio: 'The playmaker. Max sees the game a beat ahead of everyone else, threading passes into spaces opponents didn\'t know existed. Technical on the ball and dangerous in front of goal, he\'s the creative engine of the team.',
+    photoUrl: './photos/profile-pictures/player-max.jpeg',
     seasons: ['2026-2027'],
   },
   {
@@ -85,7 +86,7 @@ export const PLAYERS: Player[] = [
     position: 'ST',
     secondaryPositions: ['RW'],
     bio: 'Clinical and composed in front of goal, Evan reads the game with maturity beyond his years. Built like a track star with an engine that simply never quits, he presses relentlessly, wins second balls, and still arrives sharp in the box when it counts. His movement off the ball and reliable finishing make him a threat for the full ninety.\n\nOff the pitch, Evan brings that same intensity to every training session. Vocal, competitive, and fully switched on, he practices exactly the way he plays: at one hundred percent. That mentality is contagious, and it\'s part of what makes him stand out as much in practice as he does on match day.',
-    photoUrl: './photos/player-evan-schaal.png',
+    photoUrl: './photos/profile-pictures/player-evan-schaal.png',
     seasons: ['2026-2027'],
   },
   {
@@ -95,7 +96,7 @@ export const PLAYERS: Player[] = [
     position: 'CM',
     secondaryPositions: ['CAM'],
     bio: 'A technically tidy midfielder who keeps the ball moving with crisp, economical passing. Porter finds pockets of space naturally and links defense to attack with understated effectiveness.',
-    photoUrl: './photos/player-porter-schulte.jpg',
+    photoUrl: './photos/profile-pictures/player-porter-schulte.jpg',
     seasons: ['2026-2027'],
   },
   {
@@ -105,7 +106,7 @@ export const PLAYERS: Player[] = [
     position: 'CAM',
     secondaryPositions: ['CDM'],
     bio: 'The second of four brothers, Davey isn\'t content to follow anyone\'s footsteps. He\'s writing his own story in the middle of the park. Equally comfortable pushing forward as an attacking mid or dropping deep to win the ball, he brings a two-way engine and a competitive edge that makes him hard to pin down. His ability to read the game in both directions gives the team a dynamic option at the heart of the pitch, and his drive to stand out on his own terms makes him one to watch.',
-    photoUrl: './photos/player-davey-smith.png',
+    photoUrl: './photos/profile-pictures/player-davey-smith.png',
     seasons: ['2026-2027'],
   },
   {
@@ -115,7 +116,7 @@ export const PLAYERS: Player[] = [
     position: 'CDM',
     secondaryPositions: ['CM'],
     bio: 'Energetic and hard-working, George is the engine in the middle of the park. He breaks up play with smart positioning, wins the ball cleanly, and keeps things moving with simple, effective passing. His work rate and competitive edge make him a constant presence in the defensive and central midfield roles.',
-    photoUrl: './photos/player-george.jpeg',
+    photoUrl: './photos/profile-pictures/player-george.jpeg',
     seasons: ['2026-2027'],
   },
   {
@@ -125,7 +126,7 @@ export const PLAYERS: Player[] = [
     position: 'LW',
     secondaryPositions: ['RW', 'ST'],
     bio: 'Silky and unpredictable, Aybel dazzles with close control and quick feet. Equally comfortable on either flank, his two-footedness makes him a nightmare to defend. He takes defenders on with confidence and has the vision to pick out teammates when he draws the double team.',
-    photoUrl: './photos/player-aybel-meba.avif',
+    photoUrl: './photos/profile-pictures/player-aybel-meba.avif',
     seasons: ['2026-2027'],
   },
   {
@@ -144,7 +145,7 @@ export const PLAYERS: Player[] = [
     position: 'CAM',
     secondaryPositions: ['LW'],
     bio: 'Creative and inventive in the final third, Louie is always looking to make something happen. He combines quick passing with smart movement and has a flair for the unexpected that keeps defenses guessing.',
-    photoUrl: './photos/player-louie-mendenhall.jpg',
+    photoUrl: './photos/profile-pictures/player-louie-mendenhall.jpg',
     seasons: ['2026-2027'],
   },
 ];
