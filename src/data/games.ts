@@ -12,7 +12,7 @@ export const GAMES: Game[] = [
     venueAddress: '8101 Eastport Pkwy',
     venueCity: 'La Vista',
     venueState: 'NE',
-    isHome: false,
+    isHome: true,
     fieldType: 'turf',
     uniformColor: 'white',
     goalsFor: 2,

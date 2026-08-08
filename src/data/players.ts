@@ -115,7 +115,7 @@ export const PLAYERS: Player[] = [
     position: 'CDM',
     secondaryPositions: ['CM'],
     bio: 'Energetic and hard-working, George is the engine in the middle of the park. He breaks up play with smart positioning, wins the ball cleanly, and keeps things moving with simple, effective passing. His work rate and competitive edge make him a constant presence in the defensive and central midfield roles.',
-    photoUrl: './photos/player-george-stevens.avif',
+    photoUrl: './photos/player-george.jpeg',
     seasons: ['2026-2027'],
   },
   {
