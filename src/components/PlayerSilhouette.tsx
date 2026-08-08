@@ -1,4 +1,4 @@
-import silhouette from '../assets/player-silhouette.png';
+import silhouette from '../assets/profile-pictures/player-silhouette.png';
 
 interface Props {
   className?: string;

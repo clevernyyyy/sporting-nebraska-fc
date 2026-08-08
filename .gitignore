@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Large media (highlight videos, etc.) — not committed to git
+src/assets/game-highlights/
+*.mp4
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
