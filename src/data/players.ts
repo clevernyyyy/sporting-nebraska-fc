@@ -75,7 +75,7 @@ export const PLAYERS: Player[] = [
     number: 10,
     position: 'ST',
     secondaryPositions: ['LB', 'RB'],
-    bio: 'The playmaker. Max sees the game a beat ahead of everyone else, threading passes into spaces opponents didn\'t know existed. Technical on the ball and dangerous in front of goal, he\'s the creative engine of the team.',
+    bio: 'Creative, confident, and fast, Max loves making things happen in the attack, whether he\'s creating a chance for a teammate or going for goal himself. He feels most at home up top but also enjoys playing defense, where his speed, instincts, and determination make him tough to get past.\n\nOff the field, Max has seemingly endless energy and is rarely without a ball nearby. He loves playing baseball, jumping on the trampoline, making bracelets with his friends, and spending time with his three dogs and two cats. On the rare occasion he slows down, he loves a good underdog movie.',
     photoUrl: './photos/profile-pictures/player-max.jpeg',
     seasons: ['2026-2027'],
   },
