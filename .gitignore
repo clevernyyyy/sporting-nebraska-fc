@@ -15,6 +15,7 @@ dist-ssr
 # Large media (highlight videos, etc.) — not committed to git
 src/assets/game-highlights/
 *.mp4
+!public/videos/*.mp4
 
 # Editor directories and files
 .vscode/*

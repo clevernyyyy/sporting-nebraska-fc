@@ -322,17 +322,27 @@ export default function PlayerDetail() {
             <div className="grid md:grid-cols-2 gap-px bg-gray-200">
               {player.highlights.map((h, i) => {
                 const ytId = extractYouTubeId(h.url);
+                const isLocal = !ytId && !h.url.startsWith('http');
                 const date = new Date(h.date + 'T12:00:00');
                 return (
                   <div key={i} className="bg-white">
                     <div className="aspect-video bg-snfc-navy">
-                      <iframe
-                        src={ytId ? `https://www.youtube.com/embed/${ytId}` : h.url}
-                        title={h.title}
-                        className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                      {isLocal ? (
+                        <video
+                          src={h.url}
+                          controls
+                          className="w-full h-full object-contain"
+                          playsInline
+                        />
+                      ) : (
+                        <iframe
+                          src={ytId ? `https://www.youtube.com/embed/${ytId}` : h.url}
+                          title={h.title}
+                          className="w-full h-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      )}
                     </div>
                     <div className="px-4 py-3 border-t-2 border-snfc-gold">
                       <div className="font-semibold text-snfc-navy text-sm">{h.title}</div>

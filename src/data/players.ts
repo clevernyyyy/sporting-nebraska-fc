@@ -67,6 +67,9 @@ export const PLAYERS: Player[] = [
     position: 'CM',
     secondaryPositions: ['CDM'],
     bio: 'A box-to-box midfielder who covers every blade of grass. Levi does the unglamorous work without complaint: screening, pressing, and carrying the ball forward with purpose when the moment calls for it.',
+    highlights: [
+      { title: 'Goal vs. LCFC', url: './videos/levi-goal.mp4', date: '2026-08-08' },
+    ],
     seasons: ['2026-2027'],
   },
   {
@@ -85,6 +88,9 @@ export const PLAYERS: Player[] = [
     number: 16,
     position: 'ST',
     secondaryPositions: ['RW'],
+    highlights: [
+      { title: 'Goal vs. LCFC', url: './videos/evan-first-goal.mp4', date: '2026-08-08' },
+    ],
     bio: 'Clinical and composed in front of goal, Evan reads the game with maturity beyond his years. Built like a track star with an engine that simply never quits, he presses relentlessly, wins second balls, and still arrives sharp in the box when it counts. His movement off the ball and reliable finishing make him a threat for the full ninety.\n\nOff the pitch, Evan brings that same intensity to every training session. Vocal, competitive, and fully switched on, he practices exactly the way he plays: at one hundred percent. That mentality is contagious, and it\'s part of what makes him stand out as much in practice as he does on match day.',
     photoUrl: './photos/profile-pictures/player-evan-schaal.png',
     seasons: ['2026-2027'],
