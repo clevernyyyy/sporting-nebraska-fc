@@ -108,7 +108,7 @@ export const PLAYERS: Player[] = [
   {
     id: 'p11',
     name: 'Davey Smith',
-    number: 24,
+    number: 17,
     position: 'CAM',
     secondaryPositions: ['CDM'],
     bio: 'The second of four brothers, Davey isn\'t content to follow anyone\'s footsteps. He\'s writing his own story in the middle of the park. Equally comfortable pushing forward as an attacking mid or dropping deep to win the ball, he brings a two-way engine and a competitive edge that makes him hard to pin down. His ability to read the game in both directions gives the team a dynamic option at the heart of the pitch, and his drive to stand out on his own terms makes him one to watch.',
