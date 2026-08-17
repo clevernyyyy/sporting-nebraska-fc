@@ -138,10 +138,11 @@ export const PLAYERS: Player[] = [
   {
     id: 'p14',
     name: 'Ricky Jones',
-    number: 17,
+    number: 24,
     position: 'RW',
     secondaryPositions: ['ST'],
     bio: 'Explosive and direct, Ricky uses raw pace to stretch defenses and create chances from wide. He goes at defenders early and often, and when he gets into his stride there\'s very little you can do to stop him.',
+    photoUrl: './photos/player-ricky-jones.png',
     seasons: ['2026-2027'],
   },
   {
