@@ -43,7 +43,7 @@ export const PLAYERS: Player[] = [
   },
   {
     id: 'p5',
-    name: 'Charles Worthington',
+    name: 'Charlie Worthington',
     number: 6,
     position: 'LB',
     secondaryPositions: ['CB'],
