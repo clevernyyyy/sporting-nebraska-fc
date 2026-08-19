@@ -38,6 +38,7 @@ export const PLAYERS: Player[] = [
     position: 'CB',
     secondaryPositions: ['CDM'],
     bio: 'Composed and commanding at center back, Ryder reads the game well and rarely panics under pressure. Strong in the air and clean on the ball, he sets the defensive tone from the back.',
+    photoUrl: './photos/player-ryder-lachappell.jpg',
     seasons: ['2026-2027'],
   },
   {
