@@ -68,6 +68,7 @@ export const PLAYERS: Player[] = [
     position: 'CM',
     secondaryPositions: ['CDM'],
     bio: 'A box-to-box midfielder who covers every blade of grass. Levi does the unglamorous work without complaint: screening, pressing, and carrying the ball forward with purpose when the moment calls for it.',
+    photoUrl: './photos/player-levi-urban.png',
     // highlights: [
     //   { title: 'Goal vs. LCFC', url: './videos/levi-goal.mp4', date: '2026-08-08' },
     // ],
