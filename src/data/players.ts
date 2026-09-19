@@ -98,7 +98,7 @@ export const PLAYERS: Player[] = [
     secondaryPositions: ['RW'],
     highlights: [
       { title: 'Goal vs. LCFC', url: './videos/evan-first-goal.mp4', date: '2026-08-08' },
-      { title: 'Goal #2', url: './videos/evan-goal-2.mp4', date: '2026-09-19' },
+      { title: 'Goal vs. Kansas City Surf', url: './videos/evan-goal-2.mp4', date: '2026-09-12' },
     ],
     bio: 'Clinical and composed in front of goal, Evan reads the game with maturity beyond his years. Built like a track star with an engine that simply never quits, he presses relentlessly, wins second balls, and still arrives sharp in the box when it counts. His movement off the ball and reliable finishing make him a threat for the full ninety.\n\nOff the pitch, Evan brings that same intensity to every training session. Vocal, competitive, and fully switched on, he practices exactly the way he plays: at one hundred percent. That mentality is contagious, and it\'s part of what makes him stand out as much in practice as he does on match day.',
     photoUrl: './photos/profile-pictures/player-evan-schaal.png',
