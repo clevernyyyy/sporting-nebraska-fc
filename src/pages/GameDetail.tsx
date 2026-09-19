@@ -1,4 +1,5 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useCallback } from 'react';
+import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Home, Plane, ExternalLink, Clock, Trophy, HelpCircle, X, MapPin } from 'lucide-react';
 import { getAppData } from '../data';
@@ -16,6 +17,11 @@ function playerName(id: string, guestName?: string) {
 export default function GameDetail() {
   const { id } = useParams<{ id: string }>();
   const [pkAssistModal, setPkAssistModal] = useState(false);
+  type PmsCol = 'name' | 'passes' | 'passSuccessRate' | 'tackles';
+  const [pmsSort, setPmsSort] = useState<{ col: PmsCol; dir: 'asc' | 'desc' }>({ col: 'passes', dir: 'desc' });
+  const sortPms = useCallback((col: PmsCol) => {
+    setPmsSort(prev => prev.col === col ? { col, dir: prev.dir === 'desc' ? 'asc' : 'desc' } : { col, dir: col === 'name' ? 'asc' : 'desc' });
+  }, []);
   const { games, seasons } = getAppData();
   const game = games.find((g: { id: string }) => g.id === id);
 
@@ -616,19 +622,37 @@ export default function GameDetail() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 bg-gray-50">
-                    <th className="text-left px-5 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Player</th>
-                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Passes</th>
-                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Pass %</th>
-                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Tackles</th>
+                    {(['name', 'passes', 'passSuccessRate', 'tackles'] as PmsCol[]).map(col => {
+                      const label = col === 'name' ? 'Player' : col === 'passes' ? 'Passes' : col === 'passSuccessRate' ? 'Pass %' : 'Tackles';
+                      const active = pmsSort.col === col;
+                      const Icon = active ? (pmsSort.dir === 'desc' ? ChevronDown : ChevronUp) : ChevronsUpDown;
+                      return (
+                        <th
+                          key={col}
+                          onClick={() => sortPms(col)}
+                          className={`px-4 py-2 text-xs font-display uppercase tracking-widest font-normal cursor-pointer select-none transition-colors ${col === 'name' ? 'text-left px-5' : 'text-center'} ${active ? 'text-snfc-navy' : 'text-gray-400 hover:text-gray-600'}`}
+                          style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                        >
+                          <span className={`inline-flex items-center gap-1 ${col === 'name' ? '' : 'justify-center'}`}>
+                            {label} <Icon size={11} />
+                          </span>
+                        </th>
+                      );
+                    })}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {[...game.playerMatchStats]
-                    .sort((a, b) => (b.tackles ?? 0) - (a.tackles ?? 0))
+                    .sort((a, b) => {
+                      const pa = PLAYERS.find(p => p.id === a.playerId);
+                      const pb = PLAYERS.find(p => p.id === b.playerId);
+                      let diff = 0;
+                      if (pmsSort.col === 'name') diff = (pa?.name ?? '').localeCompare(pb?.name ?? '');
+                      else if (pmsSort.col === 'passes') diff = (a.passes ?? 0) - (b.passes ?? 0);
+                      else if (pmsSort.col === 'passSuccessRate') diff = (a.passSuccessRate ?? 0) - (b.passSuccessRate ?? 0);
+                      else diff = (a.tackles ?? 0) - (b.tackles ?? 0);
+                      return pmsSort.dir === 'asc' ? diff : -diff;
+                    })
                     .map(stat => {
                       const player = PLAYERS.find(p => p.id === stat.playerId);
                       if (!player) return null;
@@ -645,14 +669,14 @@ export default function GameDetail() {
                               <span className="text-gray-300 text-xs">#{player.number}</span>
                             </Link>
                           </td>
-                          <td className="text-center px-4 py-2.5 font-display font-bold text-snfc-navy"
+                          <td className={`text-center px-4 py-2.5 font-display font-bold ${pmsSort.col === 'passes' ? 'text-snfc-gold' : 'text-snfc-navy'}`}
                             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                             {stat.passes ?? '—'}
                           </td>
-                          <td className="text-center px-4 py-2.5 text-gray-500">
+                          <td className={`text-center px-4 py-2.5 ${pmsSort.col === 'passSuccessRate' ? 'text-snfc-gold font-bold' : 'text-gray-500'}`}>
                             {stat.passSuccessRate !== undefined ? `${stat.passSuccessRate}%` : '—'}
                           </td>
-                          <td className="text-center px-4 py-2.5 font-display font-bold text-snfc-navy"
+                          <td className={`text-center px-4 py-2.5 font-display font-bold ${pmsSort.col === 'tackles' ? 'text-snfc-gold' : 'text-snfc-navy'}`}
                             style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                             {stat.tackles ?? '—'}
                           </td>

@@ -52,7 +52,7 @@ export function getPlayerStats(seasonId: string, games: Game[]): Record<string, 
 
   const ensure = (id: string) => {
     if (!stats[id]) {
-      stats[id] = { goals: 0, assists: 0, gamesPlayed: 0, saves: 0, shotsOnGoal: 0, yellowCards: 0, redCards: 0 };
+      stats[id] = { goals: 0, assists: 0, gamesPlayed: 0, saves: 0, shotsOnGoal: 0, passes: 0, tackles: 0, yellowCards: 0, redCards: 0 };
     }
   };
 
@@ -96,6 +96,25 @@ export function getPlayerStats(seasonId: string, games: Game[]): Record<string, 
         stats[playerId].shotsOnGoal += sog;
       }
     }
+  }
+
+  // Passes, pass success rate (weighted), and tackles from per-game player match stats
+  const passSuccesses: Record<string, number> = {};
+  for (const game of seasonGames) {
+    if (game.playerMatchStats) {
+      for (const { playerId, passes, passSuccessRate, tackles } of game.playerMatchStats) {
+        ensure(playerId);
+        stats[playerId].passes  += passes  ?? 0;
+        stats[playerId].tackles += tackles ?? 0;
+        if (passes && passSuccessRate !== undefined) {
+          passSuccesses[playerId] = (passSuccesses[playerId] ?? 0) + Math.round(passes * passSuccessRate / 100);
+        }
+      }
+    }
+  }
+  for (const [id, successes] of Object.entries(passSuccesses)) {
+    const attempted = stats[id]?.passes ?? 0;
+    if (attempted > 0) stats[id].passSuccessRate = Math.round(successes / attempted * 100);
   }
 
   // Keeper saves — use per-player detail when available, else attribute to the GK

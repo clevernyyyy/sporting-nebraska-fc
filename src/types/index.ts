@@ -141,6 +141,9 @@ export interface PlayerStats {
   gamesPlayed: number;
   saves: number;       // GK only — sum of keeperSaves across games
   shotsOnGoal: number; // sum of shotsOnGoalDetail across games
+  passes: number;
+  passSuccessRate?: number; // weighted aggregate, 0–100
+  tackles: number;
   yellowCards: number;
   redCards: number;
 }

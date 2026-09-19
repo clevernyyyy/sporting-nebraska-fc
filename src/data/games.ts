@@ -72,6 +72,22 @@ export const GAMES: Game[] = [
       { minute: 0, scorerId: 'opponent' },
       { minute: 0, scorerId: 'opponent' },
     ],
+    playerMatchStats: [
+      { playerId: 'p1',  passes: 8,  passSuccessRate: 25, tackles: 0  }, // Mack
+      { playerId: 'p2',  passes: 9,  passSuccessRate: 56, tackles: 1  }, // Gus
+      { playerId: 'p3',  passes: 12, passSuccessRate: 17, tackles: 1  }, // Leo
+      { playerId: 'p4',  passes: 7,  passSuccessRate: 14, tackles: 2  }, // Ryder
+      { playerId: 'p5',  passes: 8,  passSuccessRate: 38, tackles: 0  }, // Charlie
+      { playerId: 'p6',  passes: 9,  passSuccessRate: 44, tackles: 0  }, // Joey
+      { playerId: 'p7',  passes: 5,  passSuccessRate: 20, tackles: 4  }, // Levi
+      { playerId: 'p8',  passes: 15, passSuccessRate: 20, tackles: 5  }, // Max
+      { playerId: 'p9',  passes: 7,  passSuccessRate: 43, tackles: 0  }, // Evan
+      { playerId: 'p10', passes: 12, passSuccessRate: 33, tackles: 0  }, // Porter
+      { playerId: 'p11', passes: 7,  passSuccessRate: 14, tackles: 3  }, // Davey
+      { playerId: 'p12', passes: 16, passSuccessRate: 31, tackles: 10 }, // George
+      { playerId: 'p14', passes: 16, passSuccessRate: 0,  tackles: 1  }, // Ricky
+      { playerId: 'p15', passes: 5,  passSuccessRate: 20, tackles: 0  }, // Louie
+    ],
   },
   {
     id: 'g3',
@@ -177,6 +193,23 @@ export const GAMES: Game[] = [
     opponentGoals: [
       { minute: 0, scorerId: 'opponent' },
     ],
+    playerMatchStats: [
+      { playerId: 'p1',  passes: 9,  passSuccessRate: 44, tackles: 0 }, // Mack
+      { playerId: 'p2',  passes: 18, passSuccessRate: 33, tackles: 3 }, // Gus
+      { playerId: 'p3',  passes: 19, passSuccessRate: 16, tackles: 3 }, // Leo
+      { playerId: 'p4',  passes: 8,  passSuccessRate: 25, tackles: 5 }, // Ryder
+      { playerId: 'p5',  passes: 20, passSuccessRate: 35, tackles: 3 }, // Charlie
+      { playerId: 'p6',  passes: 6,  passSuccessRate: 33, tackles: 0 }, // Joey
+      { playerId: 'p7',  passes: 21, passSuccessRate: 10, tackles: 4 }, // Levi
+      { playerId: 'p8',  passes: 15, passSuccessRate: 47, tackles: 4 }, // Max
+      { playerId: 'p9',  passes: 7,  passSuccessRate: 29, tackles: 0 }, // Evan
+      { playerId: 'p10', passes: 13, passSuccessRate: 46, tackles: 3 }, // Porter
+      { playerId: 'p11', passes: 15, passSuccessRate: 40, tackles: 1 }, // Davey
+      { playerId: 'p12', passes: 22, passSuccessRate: 23, tackles: 5 }, // George
+      { playerId: 'p13', passes: 10, passSuccessRate: 20, tackles: 1 }, // Aybel
+      { playerId: 'p14', passes: 25, passSuccessRate: 36, tackles: 4 }, // Ricky
+      { playerId: 'p15', passes: 21, passSuccessRate: 38, tackles: 2 }, // Louie
+    ],
   },
   {
     id: 'g10',
@@ -196,6 +229,22 @@ export const GAMES: Game[] = [
       { minute: 0, scorerId: 'p4' },  // Ryder
       { minute: 0, scorerId: 'p8', assisterId: 'p13' },  // Max (Aybel assist)
       { minute: 0, scorerId: 'p13' }, // Aybel
+    ],
+    playerMatchStats: [
+      { playerId: 'p1',  passes: 16, passSuccessRate: 25, tackles: 0 }, // Mack
+      { playerId: 'p2',  passes: 19, passSuccessRate: 32, tackles: 2 }, // Gus
+      { playerId: 'p3',  passes: 29, passSuccessRate: 7,  tackles: 0 }, // Leo
+      { playerId: 'p4',  passes: 12, passSuccessRate: 25, tackles: 2 }, // Ryder
+      { playerId: 'p6',  passes: 23, passSuccessRate: 22, tackles: 6 }, // Joey
+      { playerId: 'p7',  passes: 20, passSuccessRate: 25, tackles: 6 }, // Levi
+      { playerId: 'p8',  passes: 8,  passSuccessRate: 25, tackles: 0 }, // Max
+      { playerId: 'p9',  passes: 8,  passSuccessRate: 13, tackles: 4 }, // Evan
+      { playerId: 'p10', passes: 14, passSuccessRate: 7,  tackles: 3 }, // Porter
+      { playerId: 'p11', passes: 14, passSuccessRate: 7,  tackles: 2 }, // Davey
+      { playerId: 'p12', passes: 13, passSuccessRate: 8,  tackles: 3 }, // George
+      { playerId: 'p13', passes: 13, passSuccessRate: 23, tackles: 0 }, // Aybel
+      { playerId: 'p14', passes: 13, passSuccessRate: 31, tackles: 6 }, // Ricky
+      { playerId: 'p15', passes: 4,  passSuccessRate: 25, tackles: 2 }, // Louie
     ],
     opponentGoals: [
       { minute: 0, scorerId: 'opponent' },
@@ -221,6 +270,10 @@ export const GAMES: Game[] = [
       { minute: 0, scorerId: 'opponent' },
       { minute: 0, scorerId: 'opponent' },
     ],
+    cards: [
+      { minute: 0, playerId: 'p6', type: 'yellow' },
+    ],
+    notes: 'This match was not recorded due to weather conditions. Notable events (goals and cards) were tracked manually, but full player stats are unavailable.',
   },
   {
     id: 'g12',

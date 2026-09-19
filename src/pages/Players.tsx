@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
 import { getAppData, getPlayerStats, COACHES } from '../data';
 import PlayerCard from '../components/PlayerCard';
 import CoachCard from '../components/CoachCard';
@@ -6,7 +7,6 @@ import SeasonSelector from '../components/SeasonSelector';
 import type { Player, Season, PositionGroup } from '../types';
 import { POSITION_GROUP, POSITION_FULL } from '../types';
 import { Link } from 'react-router-dom';
-import DisciplinaryCard from '../components/DisciplinaryCard';
 
 const GROUP_LABELS: { value: PositionGroup | 'all'; label: string; short: string }[] = [
   { value: 'all', label: 'All',         short: 'All' },
@@ -21,6 +21,16 @@ export default function Players() {
   const activeSeason = seasons.find((s: Season) => s.isActive) ?? seasons[seasons.length - 1];
   const [seasonId, setSeasonId] = useState(activeSeason?.id ?? '');
   const [groupFilter, setGroupFilter] = useState<PositionGroup | 'all'>('all');
+  type SortCol = 'number' | 'name' | 'position' | 'goals' | 'assists' | 'ga' | 'sog' | 'passes' | 'passSuccessRate' | 'tackles' | 'saves' | 'yellow' | 'red';
+  const [sortCol, setSortCol] = useState<SortCol>('ga');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
+  const handleSort = useCallback((col: SortCol) => {
+    setSortCol(prev => {
+      if (prev === col) { setSortDir(d => d === 'desc' ? 'asc' : 'desc'); return col; }
+      setSortDir(col === 'name' || col === 'position' ? 'asc' : 'desc');
+      return col;
+    });
+  }, []);
 
   const stats = getPlayerStats(seasonId, games);
 
@@ -152,35 +162,67 @@ export default function Players() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-snfc-navy text-white/60 text-xs font-display uppercase tracking-widest"
+                  <tr className="bg-snfc-navy text-xs font-display uppercase tracking-widest"
                     style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
-                    <th className="text-left px-4 py-3 font-medium">#</th>
-                    <th className="text-left px-4 py-3 font-medium">Player</th>
-                    <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">Position</th>
-                    <th className="text-center px-4 py-3 font-medium">Goals</th>
-                    <th className="text-center px-4 py-3 font-medium">Assists</th>
-                    <th className="text-center px-4 py-3 font-medium">G+A</th>
-                    <th className="text-center px-4 py-3 font-medium" title="Shots on Goal">SOG</th>
-                    <th className="text-center px-4 py-3 font-medium hidden md:table-cell">Saves</th>
-                    <th className="text-center px-4 py-3 font-medium hidden md:table-cell"><span className="flex justify-center"><DisciplinaryCard type="yellow" size="sm" tilt={false} /></span></th>
-                    <th className="text-center px-4 py-3 font-medium hidden md:table-cell"><span className="flex justify-center"><DisciplinaryCard type="red" size="sm" tilt={false} /></span></th>
+                    {([
+                      { col: 'number',   label: '#',       align: 'left',   hide: '' },
+                      { col: 'name',     label: 'Player',  align: 'left',   hide: '' },
+                      { col: 'position', label: 'Position',align: 'left',   hide: 'hidden sm:table-cell' },
+                      { col: 'goals',    label: 'Goals',   align: 'center', hide: '' },
+                      { col: 'assists',  label: 'Assists',  align: 'center', hide: '' },
+                      { col: 'ga',       label: 'G+A',     align: 'center', hide: '' },
+                      { col: 'sog',      label: 'SOG',     align: 'center', hide: '' },
+                      { col: 'passes',          label: 'Passes',   align: 'center', hide: 'hidden md:table-cell' },
+                      { col: 'passSuccessRate', label: 'Pass %',   align: 'center', hide: 'hidden md:table-cell' },
+                      { col: 'tackles',         label: 'Tackles',  align: 'center', hide: 'hidden md:table-cell' },
+                      { col: 'saves',    label: 'Saves',   align: 'center', hide: 'hidden md:table-cell' },
+                      { col: 'yellow',   label: '🟨',      align: 'center', hide: 'hidden md:table-cell' },
+                      { col: 'red',      label: '🟥',      align: 'center', hide: 'hidden md:table-cell' },
+                    ] as { col: SortCol; label: string; align: string; hide: string }[]).map(({ col, label, align, hide }) => {
+                      const active = sortCol === col;
+                      const Icon = active ? (sortDir === 'desc' ? ChevronDown : ChevronUp) : ChevronsUpDown;
+                      return (
+                        <th
+                          key={col}
+                          onClick={() => handleSort(col)}
+                          className={`px-4 py-3 font-medium cursor-pointer select-none transition-colors ${hide} text-${align} ${active ? 'text-snfc-gold' : 'text-white/50 hover:text-white/80'}`}
+                        >
+                          <span className={`inline-flex items-center gap-1 ${align === 'center' ? 'justify-center' : ''}`}>
+                            {label} <Icon size={11} />
+                          </span>
+                        </th>
+                      );
+                    })}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[...seasonPlayers]
                     .sort((a: Player, b: Player) => {
-                      const aTotal = (stats[a.id]?.goals ?? 0) + (stats[a.id]?.assists ?? 0);
-                      const bTotal = (stats[b.id]?.goals ?? 0) + (stats[b.id]?.assists ?? 0);
-                      return bTotal - aTotal;
+                      const sa = stats[a.id] ?? { goals: 0, assists: 0, shotsOnGoal: 0, passes: 0, tackles: 0, saves: 0, yellowCards: 0, redCards: 0, gamesPlayed: 0 };
+                      const sb = stats[b.id] ?? { goals: 0, assists: 0, shotsOnGoal: 0, passes: 0, tackles: 0, saves: 0, yellowCards: 0, redCards: 0, gamesPlayed: 0 };
+                      let diff = 0;
+                      if (sortCol === 'number')   diff = a.number - b.number;
+                      else if (sortCol === 'name')     diff = a.name.localeCompare(b.name);
+                      else if (sortCol === 'position') diff = a.position.localeCompare(b.position);
+                      else if (sortCol === 'goals')    diff = sa.goals - sb.goals;
+                      else if (sortCol === 'assists')  diff = sa.assists - sb.assists;
+                      else if (sortCol === 'ga')       diff = (sa.goals + sa.assists) - (sb.goals + sb.assists);
+                      else if (sortCol === 'sog')      diff = sa.shotsOnGoal - sb.shotsOnGoal;
+                      else if (sortCol === 'passes')          diff = sa.passes - sb.passes;
+                      else if (sortCol === 'passSuccessRate') diff = (sa.passSuccessRate ?? 0) - (sb.passSuccessRate ?? 0);
+                      else if (sortCol === 'tackles')         diff = sa.tackles - sb.tackles;
+                      else if (sortCol === 'saves')    diff = sa.saves - sb.saves;
+                      else if (sortCol === 'yellow')   diff = sa.yellowCards - sb.yellowCards;
+                      else if (sortCol === 'red')      diff = sa.redCards - sb.redCards;
+                      return sortDir === 'asc' ? diff : -diff;
                     })
                     .map((player: Player) => {
-                      const s = stats[player.id] ?? { goals: 0, assists: 0, shotsOnGoal: 0 };
+                      const s = stats[player.id] ?? { goals: 0, assists: 0, shotsOnGoal: 0, passes: 0, tackles: 0, saves: 0, yellowCards: 0, redCards: 0, gamesPlayed: 0 };
+                      const gold = (col: SortCol) => sortCol === col ? 'text-snfc-gold font-bold' : '';
                       return (
                         <tr key={player.id} className="hover:bg-gray-50 transition-colors">
-                          <td
-                            className="px-4 py-3 text-gray-300 font-display font-bold"
-                            style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-                          >
+                          <td className={`px-4 py-3 font-display font-bold ${sortCol === 'number' ? 'text-snfc-gold' : 'text-gray-300'}`}
+                            style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                             {player.number}
                           </td>
                           <td className="px-4 py-3">
@@ -188,34 +230,47 @@ export default function Players() {
                               {player.photoUrl && (
                                 <img src={player.photoUrl} className="w-7 h-7 object-cover object-[center_25%] border border-snfc-gold" alt="" />
                               )}
-                              <Link to={`/players/${player.id}`} className="font-medium text-snfc-navy hover:text-snfc-gold transition-colors">
+                              <Link to={`/players/${player.id}`} className={`font-medium hover:text-snfc-gold transition-colors ${sortCol === 'name' ? 'text-snfc-gold' : 'text-snfc-navy'}`}>
                                 {player.name}
                               </Link>
                             </div>
                           </td>
                           <td className="px-4 py-3 hidden sm:table-cell">
-                            <span
-                              className="text-xs font-display uppercase tracking-wider text-gray-400"
-                              style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-                            >
+                            <span className={`text-xs font-display uppercase tracking-wider ${sortCol === 'position' ? 'text-snfc-gold' : 'text-gray-400'}`}
+                              style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                               {POSITION_FULL[player.position]}
                             </span>
                           </td>
-                          <td className="px-4 py-3 text-center font-bold text-snfc-navy">{s.goals}</td>
-                          <td className="px-4 py-3 text-center font-bold text-snfc-navy">{s.assists}</td>
+                          <td className={`px-4 py-3 text-center font-bold ${gold('goals') || 'text-snfc-navy'}`}>{s.goals}</td>
+                          <td className={`px-4 py-3 text-center font-bold ${gold('assists') || 'text-snfc-navy'}`}>{s.assists}</td>
                           <td className="px-4 py-3 text-center">
-                            <span
-                              className={`font-display font-bold ${s.goals + s.assists > 0 ? 'text-snfc-gold' : 'text-gray-300'}`}
-                              style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-                            >
+                            <span className={`font-display font-bold ${gold('ga') || (s.goals + s.assists > 0 ? 'text-snfc-navy' : 'text-gray-300')}`}
+                              style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
                               {s.goals + s.assists}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-center">
-                            {s.shotsOnGoal > 0 ? <span className="font-bold text-snfc-navy">{s.shotsOnGoal}</span> : <span className="text-gray-200">—</span>}
+                            {s.shotsOnGoal > 0
+                              ? <span className={`font-bold ${gold('sog') || 'text-snfc-navy'}`}>{s.shotsOnGoal}</span>
+                              : <span className="text-gray-200">—</span>}
                           </td>
-                          <td className="px-4 py-3 text-center text-gray-400 hidden md:table-cell">
-                            {s.saves > 0 ? <span className="font-bold text-snfc-navy">{s.saves}</span> : '—'}
+                          <td className="px-4 py-3 text-center hidden md:table-cell">
+                            {s.passes > 0
+                              ? <span className={`font-bold ${gold('passes') || 'text-snfc-navy'}`}>{s.passes}</span>
+                              : <span className="text-gray-200">—</span>}
+                          </td>
+                          <td className="px-4 py-3 text-center hidden md:table-cell">
+                            {s.passSuccessRate !== undefined
+                              ? <span className={`font-bold ${gold('passSuccessRate') || 'text-snfc-navy'}`}>{s.passSuccessRate}%</span>
+                              : <span className="text-gray-200">—</span>}
+                          </td>
+                          <td className="px-4 py-3 text-center hidden md:table-cell">
+                            {s.tackles > 0
+                              ? <span className={`font-bold ${gold('tackles') || 'text-snfc-navy'}`}>{s.tackles}</span>
+                              : <span className="text-gray-200">—</span>}
+                          </td>
+                          <td className="px-4 py-3 text-center hidden md:table-cell">
+                            {s.saves > 0 ? <span className={`font-bold ${gold('saves') || 'text-snfc-navy'}`}>{s.saves}</span> : <span className="text-gray-400">—</span>}
                           </td>
                           <td className="px-4 py-3 text-center hidden md:table-cell">
                             {s.yellowCards > 0 ? <span className="font-bold text-amber-500">{s.yellowCards}</span> : <span className="text-gray-200">—</span>}
