@@ -95,6 +95,12 @@ export interface Game {
   goalsAgainst: number;
   goals: GoalEvent[];
   opponentGoals: GoalEvent[];
+  playerMatchStats?: {
+    playerId: string;
+    passes?: number;
+    passSuccessRate?: number; // 0–100
+    tackles?: number;
+  }[];
   keeperSaves?: number;  // total saves this game (all keepers combined)
   keeperSavesDetail?: { keeperId: string; saves: number }[];  // per-keeper breakdown
   shotsOnGoal?: number;  // total shots on goal this game (all our players combined)

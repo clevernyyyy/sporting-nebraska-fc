@@ -601,6 +601,70 @@ export default function GameDetail() {
           </div>
         )}
 
+        {/* Player Stats */}
+        {game.playerMatchStats && game.playerMatchStats.length > 0 && (
+          <div className="bg-white border border-gray-200">
+            <div className="border-b-2 border-snfc-gold px-5 py-3">
+              <h2
+                className="font-display font-bold uppercase tracking-widest text-snfc-navy"
+                style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+              >
+                Player Stats
+              </h2>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-100 bg-gray-50">
+                    <th className="text-left px-5 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
+                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Player</th>
+                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
+                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Passes</th>
+                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
+                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Pass %</th>
+                    <th className="text-center px-4 py-2 text-xs font-display uppercase tracking-widest text-gray-400 font-normal"
+                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>Tackles</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {[...game.playerMatchStats]
+                    .sort((a, b) => (b.tackles ?? 0) - (a.tackles ?? 0))
+                    .map(stat => {
+                      const player = PLAYERS.find(p => p.id === stat.playerId);
+                      if (!player) return null;
+                      return (
+                        <tr key={stat.playerId} className="hover:bg-gray-50 transition-colors">
+                          <td className="px-5 py-2.5">
+                            <Link to={`/players/${player.id}`} className="flex items-center gap-2.5 group">
+                              {player.photoUrl && (
+                                <img src={player.photoUrl} className="w-7 h-7 object-cover object-[center_25%] border border-gray-200 shrink-0" alt="" />
+                              )}
+                              <span className="font-medium text-snfc-navy group-hover:text-snfc-gold transition-colors">
+                                {player.name}
+                              </span>
+                              <span className="text-gray-300 text-xs">#{player.number}</span>
+                            </Link>
+                          </td>
+                          <td className="text-center px-4 py-2.5 font-display font-bold text-snfc-navy"
+                            style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                            {stat.passes ?? '—'}
+                          </td>
+                          <td className="text-center px-4 py-2.5 text-gray-500">
+                            {stat.passSuccessRate !== undefined ? `${stat.passSuccessRate}%` : '—'}
+                          </td>
+                          <td className="text-center px-4 py-2.5 font-display font-bold text-snfc-navy"
+                            style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}>
+                            {stat.tackles ?? '—'}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
         {/* Notes */}
         {game.notes && (
           <div className="bg-white border border-gray-200">

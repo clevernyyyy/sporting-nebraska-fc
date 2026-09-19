@@ -25,6 +25,21 @@ export const GAMES: Game[] = [
       { minute: 14, scorerId: 'opponent' },
       { minute: 25, scorerId: 'opponent' },
     ],
+    playerMatchStats: [
+      { playerId: 'p1',  passes: 6,  passSuccessRate: 33, tackles: 0  }, // Mack
+      { playerId: 'p2',  passes: 32, passSuccessRate: 50, tackles: 3  }, // Gus
+      { playerId: 'p3',  passes: 23, passSuccessRate: 43, tackles: 7  }, // Leo
+      { playerId: 'p4',  passes: 30, passSuccessRate: 37, tackles: 1  }, // Ryder
+      { playerId: 'p5',  passes: 18, passSuccessRate: 39, tackles: 1  }, // Charlie
+      { playerId: 'p6',  passes: 11, passSuccessRate: 18, tackles: 1  }, // Joey
+      { playerId: 'p7',  passes: 15, passSuccessRate: 20, tackles: 10 }, // Levi
+      { playerId: 'p9',  passes: 9,  passSuccessRate: 33, tackles: 4  }, // Evan
+      { playerId: 'p11', passes: 19, passSuccessRate: 21, tackles: 3  }, // Davey
+      { playerId: 'p12', passes: 30, passSuccessRate: 27, tackles: 7  }, // George
+      { playerId: 'p13', passes: 14, passSuccessRate: 36, tackles: 4  }, // Aybel
+      { playerId: 'p14', passes: 19, passSuccessRate: 26, tackles: 3  }, // Ricky
+      { playerId: 'p15', passes: 18, passSuccessRate: 28, tackles: 5  }, // Louie
+    ],
     keeperSaves: 11,
     shotsOnGoal: 12,
     shotsOnGoalDetail: [
