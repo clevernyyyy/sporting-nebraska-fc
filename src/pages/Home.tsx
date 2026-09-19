@@ -44,13 +44,17 @@ export default function Home() {
 
   const record = getSeasonRecord(seasonId, pastGames);
 
-  const topScorer = [...players]
+  const scorerList = [...players]
     .map(p => ({ player: p, goals: stats[p.id]?.goals ?? 0 }))
-    .sort((a, b) => b.goals - a.goals)[0];
+    .sort((a, b) => b.goals - a.goals);
+  const topGoals = scorerList[0]?.goals ?? 0;
+  const topScorers = topGoals > 0 ? scorerList.filter(x => x.goals === topGoals) : [];
 
-  const topAssist = [...players]
+  const assisterList = [...players]
     .map(p => ({ player: p, assists: stats[p.id]?.assists ?? 0 }))
-    .sort((a, b) => b.assists - a.assists)[0];
+    .sort((a, b) => b.assists - a.assists);
+  const topAsts = assisterList[0]?.assists ?? 0;
+  const topAssisters = topAsts > 0 ? assisterList.filter(x => x.assists === topAsts) : [];
 
   const winPct = record.played > 0 ? Math.round((record.wins / record.played) * 100) : 0;
   const cleanSheets = pastGames.filter((g: Game) => g.goalsAgainst === 0).length;
@@ -156,70 +160,76 @@ export default function Home() {
         {pastGames.length > 0 && <div>
           <SectionLabel>Season Leaders</SectionLabel>
           <div className="grid md:grid-cols-3 gap-0 border border-gray-200 bg-gray-200 gap-px">
-            {topScorer && topScorer.goals > 0 && (
-              <Link
-                to={`/players/${topScorer.player.id}`}
-                className="bg-white p-5 hover:bg-gray-50 transition-colors group flex flex-col gap-3"
-              >
+            {topScorers.length > 0 && (
+              <div className="bg-white p-5 flex flex-col gap-3">
                 <div
                   className="text-xs font-display uppercase tracking-widest text-snfc-gold"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
-                  Top Scorer
+                  {topScorers.length === 1 ? 'Top Scorer' : 'Top Scorers'}
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
-                    {topScorer.player.photoUrl
-                      ? <img src={topScorer.player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
-                      : <PlayerSilhouette />
-                    }
-                  </div>
-                  <div>
-                    <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
-                      {topScorer.player.name}
+                {topScorers.map(({ player, goals }) => (
+                  <Link
+                    key={player.id}
+                    to={`/players/${player.id}`}
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
+                      {player.photoUrl
+                        ? <img src={player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
+                        : <PlayerSilhouette />
+                      }
                     </div>
-                    <div
-                      className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-                    >
-                      {topScorer.goals} <span className="text-sm font-normal text-gray-400">goals</span>
+                    <div>
+                      <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
+                        {player.name}
+                      </div>
+                      <div
+                        className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
+                        style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                      >
+                        {goals} <span className="text-sm font-normal text-gray-400">goals</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Link>
+                  </Link>
+                ))}
+              </div>
             )}
 
-            {topAssist && topAssist.assists > 0 && (
-              <Link
-                to={`/players/${topAssist.player.id}`}
-                className="bg-white p-5 hover:bg-gray-50 transition-colors group flex flex-col gap-3"
-              >
+            {topAssisters.length > 0 && (
+              <div className="bg-white p-5 flex flex-col gap-3">
                 <div
                   className="text-xs font-display uppercase tracking-widest text-snfc-gold"
                   style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
                 >
-                  Top Assister
+                  {topAssisters.length === 1 ? 'Top Assister' : 'Top Assisters'}
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
-                    {topAssist.player.photoUrl
-                      ? <img src={topAssist.player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
-                      : <PlayerSilhouette />
-                    }
-                  </div>
-                  <div>
-                    <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
-                      {topAssist.player.name}
+                {topAssisters.map(({ player, assists }) => (
+                  <Link
+                    key={player.id}
+                    to={`/players/${player.id}`}
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-14 h-14 border-2 border-snfc-gold shrink-0 overflow-hidden">
+                      {player.photoUrl
+                        ? <img src={player.photoUrl} className="w-full h-full object-cover object-[center_25%]" alt="" />
+                        : <PlayerSilhouette />
+                      }
                     </div>
-                    <div
-                      className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
-                      style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
-                    >
-                      {topAssist.assists} <span className="text-sm font-normal text-gray-400">assists</span>
+                    <div>
+                      <div className="font-semibold text-snfc-navy group-hover:text-snfc-gold transition-colors">
+                        {player.name}
+                      </div>
+                      <div
+                        className="text-3xl font-display font-bold text-snfc-navy leading-tight mt-0.5"
+                        style={{ fontFamily: 'Oswald, Arial Narrow, sans-serif' }}
+                      >
+                        {assists} <span className="text-sm font-normal text-gray-400">assists</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Link>
+                  </Link>
+                ))}
+              </div>
             )}
 
             <div className="bg-snfc-navy p-5 flex items-center gap-4">
