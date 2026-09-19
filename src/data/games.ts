@@ -141,20 +141,6 @@ export const GAMES: Game[] = [
 
   // ── Other / TBD Games ──────────────────────────────────────────
   {
-    id: 'g8',
-    seasonId: '2026-2027',
-    date: '2026-08-22',
-    opponent: { name: 'TBD', city: 'TBD', state: 'NE' },
-    venue: 'TBD',
-    venueCity: 'TBD',
-    venueState: 'NE',
-    isHome: false,
-    goalsFor: 0,
-    goalsAgainst: 0,
-    goals: [],
-    opponentGoals: [],
-  },
-  {
     id: 'g10a',
     seasonId: '2026-2027',
     date: '2026-09-12',
