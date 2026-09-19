@@ -40,7 +40,7 @@ export const PLAYERS: Player[] = [
     bio: 'Composed and commanding at center back, Ryder reads the game well and rarely panics under pressure. Strong in the air and clean on the ball, he sets the defensive tone from the back.',
     photoUrl: './photos/player-ryder-lachappell.jpg',
     highlights: [
-      { title: 'Goal', url: './videos/ryder-goal.mp4', date: '2026-09-19' },
+      { title: 'Goal vs. Sporting Iowa Central', url: './videos/ryder-goal.mp4', date: '2026-09-12' },
     ],
     seasons: ['2026-2027'],
   },
@@ -86,7 +86,7 @@ export const PLAYERS: Player[] = [
     bio: 'Creative, confident, and fast, Max loves making things happen in the attack, whether he\'s creating a chance for a teammate or going for goal himself. He feels most at home up top but also enjoys playing defense, where his speed, instincts, and determination make him tough to get past.\n\nOff the field, Max has seemingly endless energy and is rarely without a ball nearby. He loves playing baseball, jumping on the trampoline, making bracelets with his friends, and spending time with his three dogs and two cats. On the rare occasion he slows down, he loves a good underdog movie.',
     photoUrl: './photos/profile-pictures/player-max.jpeg',
     highlights: [
-      { title: 'Goal', url: './videos/max-goal.mp4', date: '2026-09-19' },
+      { title: 'Goal vs. Sporting Iowa Central', url: './videos/max-goal.mp4', date: '2026-09-12' },
     ],
     seasons: ['2026-2027'],
   },
@@ -142,6 +142,9 @@ export const PLAYERS: Player[] = [
     secondaryPositions: ['RW', 'ST'],
     bio: 'Silky and unpredictable, Aybel dazzles with close control and quick feet. Equally comfortable on either flank, his two-footedness makes him a nightmare to defend. He takes defenders on with confidence and has the vision to pick out teammates when he draws the double team.',
     photoUrl: './photos/profile-pictures/player-aybel-meba.avif',
+    highlights: [
+      { title: 'Goal vs. Sporting Iowa Central', url: './videos/aybel-goal.mp4', date: '2026-09-12' },
+    ],
     seasons: ['2026-2027'],
   },
   {
