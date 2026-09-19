@@ -154,8 +154,14 @@ export const GAMES: Game[] = [
     fieldType: 'turf',
     goalsFor: 3,
     goalsAgainst: 1,
-    goals: [],
-    opponentGoals: [],
+    goals: [
+      { minute: 0, scorerId: 'p9' },  // Evan
+      { minute: 0, scorerId: 'p8' },  // Max
+      { minute: 0, scorerId: 'p14' }, // Ricky
+    ],
+    opponentGoals: [
+      { minute: 0, scorerId: 'opponent' },
+    ],
   },
   {
     id: 'g10',
@@ -171,8 +177,15 @@ export const GAMES: Game[] = [
     fieldType: 'turf',
     goalsFor: 3,
     goalsAgainst: 2,
-    goals: [],
-    opponentGoals: [],
+    goals: [
+      { minute: 0, scorerId: 'p4' },  // Ryder
+      { minute: 0, scorerId: 'p8' },  // Max
+      { minute: 0, scorerId: 'p13' }, // Aybel
+    ],
+    opponentGoals: [
+      { minute: 0, scorerId: 'opponent' },
+      { minute: 0, scorerId: 'opponent' },
+    ],
   },
   {
     id: 'g11',
