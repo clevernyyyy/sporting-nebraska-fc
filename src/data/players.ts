@@ -86,6 +86,7 @@ export const PLAYERS: Player[] = [
     bio: 'Creative, confident, and fast, Max loves making things happen in the attack, whether he\'s creating a chance for a teammate or going for goal himself. He feels most at home up top but also enjoys playing defense, where his speed, instincts, and determination make him tough to get past.\n\nOff the field, Max has seemingly endless energy and is rarely without a ball nearby. He loves playing baseball, jumping on the trampoline, making bracelets with his friends, and spending time with his three dogs and two cats. On the rare occasion he slows down, he loves a good underdog movie.',
     photoUrl: './photos/profile-pictures/player-max.jpeg',
     highlights: [
+      { title: 'Goal vs. Kansas City Surf', url: './videos/max-goal-kc.mp4', date: '2026-09-12' },
       { title: 'Goal vs. Sporting Iowa Central', url: './videos/max-goal.mp4', date: '2026-09-12' },
     ],
     seasons: ['2026-2027'],
