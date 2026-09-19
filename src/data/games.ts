@@ -179,7 +179,7 @@ export const GAMES: Game[] = [
     goalsAgainst: 2,
     goals: [
       { minute: 0, scorerId: 'p4' },  // Ryder
-      { minute: 0, scorerId: 'p8' },  // Max
+      { minute: 0, scorerId: 'p8', assisterId: 'p13' },  // Max (Aybel assist)
       { minute: 0, scorerId: 'p13' }, // Aybel
     ],
     opponentGoals: [
