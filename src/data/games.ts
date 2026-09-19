@@ -156,7 +156,7 @@ export const GAMES: Game[] = [
     goalsAgainst: 1,
     goals: [
       { minute: 0, scorerId: 'p9' },  // Evan
-      { minute: 0, scorerId: 'p8' },  // Max
+      { minute: 0, scorerId: 'p8', assisterId: 'p11' },  // Max (Davey assist)
       { minute: 0, scorerId: 'p14' }, // Ricky
     ],
     opponentGoals: [
